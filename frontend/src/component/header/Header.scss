@@ -1,0 +1,155 @@
+.header-main {
+    position: fixed;
+    top: 0;
+    width: 70%;
+    margin-top: 20px;
+    display: flex;
+
+    .header-nav-link {
+        cursor: pointer;
+    }
+
+
+    .header-main-title {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .header-login {
+            margin-right: 36px;
+            cursor: pointer;
+        }
+
+        .header-main-email {
+            margin-right: 36px;
+            cursor: pointer;
+        }
+    }
+}
+
+.modal {
+    width: 650px;
+    height: 500px;
+
+    .modal-login-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .modal-login-errorfind-platform {
+        font-size: 14px;
+        color: cornflowerblue;
+        margin-top: 46px;
+        margin-left: 12px;
+    }
+
+    .modal-login-options-prompt {
+        font-size: 12px;
+        color: black;
+        font-weight: bold;
+        margin-top: 12px;
+        margin-left: 12px;
+    }
+
+    .modal-login-kind {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 60px;
+
+        .modal-login-google-text {
+            font-weight: bold;
+            font-size: 18px;
+            padding-right: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .modal-login-kakao-text {
+            font-weight: bold;
+            font-size: 18px;
+            padding-right: 12px;
+        }
+    }
+
+    .modal-login-welcome {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 12px;
+    }
+
+    .modal-login-information {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 12px;
+    }
+
+    .modal-login-nickname {
+        margin-top: 70px;
+        margin-left: 24px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .modal-form {
+
+        .modal-login-nickname-field {
+            margin-top: 62px;
+            margin-left: 40px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .modal-login-nickname-input {
+            .modal-login-nickname-form {
+                width: 480px;
+                height: 26px;
+                margin-top: 62px;
+                margin-left: 18px;
+            }
+        }
+
+        .modal-login-position-field {
+            margin-top: 30px;
+            margin-left: 40px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .modal-login-position-input {
+            .modal-login-position-form {
+                width: 480px;
+                height: 26px;
+                margin-top: 30px;
+                margin-left: 18px;
+                padding-left: 8px;
+            }
+        }
+
+        .modal-login-error-field {
+            margin-top: 60px;
+            margin-left: 40px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .modal-login-error-field-content {
+            margin-top: 60px;
+            margin-left: 12px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    }
+
+    .modal-login-button {
+        width: 540px;
+        height: 40px;
+        margin-top: 70px;
+        translate: (10%);
+        background-color: dodgerblue;
+        color: white;
+        font-weight: bold;
+    }
+}

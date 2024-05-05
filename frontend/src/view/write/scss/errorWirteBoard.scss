@@ -1,0 +1,152 @@
+@import 'component/SelectBox.scss';
+
+.error-write-board-component-first-group {
+
+  .error-write-board-component-where-title {
+    text-align: left;
+    padding-left: 16px;
+  }
+
+  .selectBox {
+    margin-top: 30px;
+    margin-left: 16px;
+    position: relative;
+    width: 500px;
+    height: 35px;
+    border-radius: 4px;
+    border: 2px solid gray;
+  }
+  .selectBox .select {
+    width: inherit;
+    height: inherit;
+    background: transparent;
+    border: 0 none;
+    outline: 0 none;
+    padding: 0 5px;
+    position: relative;
+    z-index: 3; // select가 위로 올라와야 함
+  }
+  .selectBox .select option {
+    background: white;
+    color: black;
+    border: 1px solid black;
+    font-size: 18px;
+  }
+  .selectBox .icoArrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 35px;
+    height: inherit;
+    border-left: 2px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .selectBox .icoArrow img {
+    width: 50%;
+    transition: .3s; // 부드럽게 회전
+  }
+
+  .selectBox .select:focus + .icoArrow img {
+    transform: rotate(180deg);
+  }
+}
+
+.error-write-board-component-second-group {
+  margin-top: 120px;
+
+  .error-write-board-component-kind {
+    text-align: left;
+    padding-left: 16px;
+  }
+
+  .selectBox {
+    margin-top: 30px;
+    margin-left: 16px;
+    position: relative;
+    width: 500px;
+    height: 35px;
+    border-radius: 4px;
+    border: 2px solid gray;
+  }
+  .selectBox .select {
+    width: inherit;
+    height: inherit;
+    background: transparent;
+    border: 0 none;
+    outline: 0 none;
+    padding: 0 5px;
+    position: relative;
+    z-index: 3; // select가 위로 올라와야 함
+  }
+  .selectBox .select option {
+    background: white;
+    color: black;
+    border: 1px solid black;
+    font-size: 18px;
+  }
+  .selectBox .icoArrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 35px;
+    height: inherit;
+    border-left: 2px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .selectBox .icoArrow img {
+    width: 50%;
+    transition: .3s; // 부드럽게 회전
+  }
+
+  .selectBox .select:focus + .icoArrow img {
+    transform: rotate(180deg);
+  }
+}
+
+.error-write-board-component-third-group {
+  margin-top: 120px;
+
+  .error-write-board-component-error-title {
+    text-align: start;
+    padding-left: 16px;
+  }
+
+  .error-write-board-component-error {
+    display: flex;
+    margin-left: 16px;
+  }
+}
+
+.error-write-board-component-fourth-group {
+  margin-top: 120px;
+
+  .error-write-board-component-situation {
+    text-align: start;
+    padding-left: 16px;
+  }
+
+  .error-write-board-component-error {
+    display: flex;
+    margin-left: 16px;
+  }
+}
+
+.inputBox {
+  display: flex;
+  margin-left: 16px;
+
+  .input-situation {
+    width: 500px;
+    height: 30px;
+
+    padding-left: 8px;
+  }
+}

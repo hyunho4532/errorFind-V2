@@ -1,0 +1,13 @@
+.main-component {
+    display: flex;
+
+    .main-card-component {
+        width: 480px;
+        height: 240px;
+        display: flex;
+
+        .main-card-formatted {
+            margin-top: auto;
+        }
+    }
+}

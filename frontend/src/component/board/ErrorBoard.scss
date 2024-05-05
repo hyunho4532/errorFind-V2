@@ -1,0 +1,91 @@
+.main-component-title {
+    text-align: left;
+    margin-left: 30px;
+}
+
+@media screen and (min-width: 780px) {
+    .main-component {
+        width: auto;
+        height: auto;
+    }
+
+    .main-card {
+        margin-left: 0;
+        width: auto;
+    }
+
+    .main-card-board-datas {
+        padding: 10px;
+    }
+
+    .main-type-text {
+        margin-top: 6px;
+        margin-left: 6px;
+    }
+
+    .main-author-text {
+        width: auto;
+        margin-left: 6px;
+    }
+
+    .main-formatted-date-text {
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 356px) {
+
+}
+
+.main-component {
+    width: 780px;
+    height: 180px;
+
+    .main-card {
+        margin-left: 30px;
+        cursor: pointer;
+        border: 3px solid rgb(221, 221, 221);
+
+        .main-link-style {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .main-card-component {
+
+            .main-card-board-datas {
+
+                .main-type-text {
+                    height: 16px;
+                    font-weight: bold;
+                    margin: 0;
+                    padding: 0;
+                    margin-top: 4px;
+                    margin-left: 6px;
+                    text-align: left;
+                }
+
+                .main-content-text {
+                    height: 64px;
+                    text-align: left;
+                    margin-left: 6px;
+                    font-size: 14px;
+                }
+
+                .main-card-board-data {
+                    display: flex;
+
+                    .main-author-text {
+                        width: 150px;
+                        text-align: left;
+                        margin-left: 6px;
+                    }
+
+                    .main-formatted-date-text {
+                        text-align: end;
+                    }
+                }
+            }
+        }
+    }
+}
