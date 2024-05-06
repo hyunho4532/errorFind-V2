@@ -18,6 +18,11 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+aws.config.update ({
+    region: 'ap-northeast-2',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+})
 
 app.post('/errorTypeData', (req, res) => {
     https.get('https://czwpwf5o4m.execute-api.ap-northeast-2.amazonaws.com/stage/error/write', (response) => {
@@ -41,12 +46,6 @@ app.post('/platformData', (req, res) => {
 
 app.post('/errorBoardData', (req, res) => {
 
-    aws.config.update ({
-        region: 'ap-northeast-2',
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    })
-
     const body = req.body;
 
     console.log(body);
@@ -69,12 +68,6 @@ app.post('/errorBoardData', (req, res) => {
 
 app.post('/userData', (req, res) => {
 
-    aws.config.update ({
-        region: 'ap-northeast-2',
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    })
-
     const body = req.body;
 
     console.log(body);
@@ -95,6 +88,25 @@ app.post('/userData', (req, res) => {
     });
 })
 
+app.post('/errorHelpingData', (req, res) => {
+    const body = req.body;
+
+    const params = {
+        TableName: 'HELPING',
+        Item: body
+    }
+
+    docClient.put(params, (err, data) => {
+        if (err) {
+            console.error('Unable to add item. Error JSON:', JSON.stringify(err, null, 2));
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            console.log('Added Item:', JSON.stringify(data, null, 2));
+            res.json(body);
+        }
+    })
+})
+
 app.get('/detail', (req, res) => {
     const author = req.query.author;
     const type = req.query.type;
@@ -103,12 +115,6 @@ app.get('/detail', (req, res) => {
 });
 
 app.get('/errorBoardData/get/web', (req, res) => {
-    
-    aws.config.update ({
-        region: 'ap-northeast-2',
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    })
 
     const params = {
         TableName: 'errorBoard',
@@ -125,11 +131,6 @@ app.get('/errorBoardData/get/web', (req, res) => {
 });
 
 app.get('/errorFind/avg/android', (req, res) => {
-    aws.config.update ({
-        region: 'ap-northeast-2',
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    })
 
     const params = {
         TableName: 'errorBoard'
@@ -146,11 +147,6 @@ app.get('/errorFind/avg/android', (req, res) => {
 })
 
 app.get('/errorFind/avg/devops', (req, res) => {
-    aws.config.update ({
-        region: 'ap-northeast-2',
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    })
 
     const params = {
         TableName: 'errorBoard'
@@ -167,11 +163,6 @@ app.get('/errorFind/avg/devops', (req, res) => {
 })
 
 app.get('/errorFind/avg/web', (req, res) => {
-    aws.config.update ({
-        region: 'ap-northeast-2',
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    })
 
     const params = {
         TableName: 'errorBoard',
@@ -189,12 +180,6 @@ app.get('/errorFind/avg/web', (req, res) => {
 })
 
 app.get('/errorBoardData/get', (req, res) => {
-    
-    aws.config.update ({
-        region: 'ap-northeast-2',
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    })
 
     const params = {
         TableName: 'errorBoard',
