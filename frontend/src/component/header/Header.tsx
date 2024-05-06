@@ -77,7 +77,7 @@ function Header() {
                         </div>
                     </Link>
 
-                    <Link to="/error/average" style={{  width: '90px', paddingLeft: '50px', paddingRight: '60px' }}>
+                    <Link to="/error/helping" style={{  width: '90px', paddingLeft: '50px', paddingRight: '60px' }}>
                         <div className="header-nav-link">
                             <p>헬핑!</p>
                         </div>
