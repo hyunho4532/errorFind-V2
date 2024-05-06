@@ -1,13 +1,18 @@
+import { Link } from 'react-router-dom'
+import './Helping.scss'
+
 function Helping() {
+
     return (
-        <>
+        <div>
             <div>
-                <button onClick={toggleScreenShare}>
-                    {isScreenSharing ? 'Stop Sharing' : 'Start Sharing'}
-                </button>
-                <video ref={videoRef} autoPlay />
+                <Link to="/error/helping/insert">
+                    <button className="helping-button">
+                        헬핑! 등록하기 🎈
+                    </button>
+                </Link>
             </div>
-        </>
+        </div>
     )
 }
 
