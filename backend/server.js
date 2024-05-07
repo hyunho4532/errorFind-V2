@@ -88,6 +88,26 @@ app.post('/userData', (req, res) => {
     });
 })
 
+app.post('/userData/detail', (req, res) => {
+
+    const authuid = req.body.id;
+
+    const params = {
+        TableName: 'ERRORUSER',
+        Key: {
+            'id': authuid
+        }
+    }
+
+    docClient.get(params, (err, data) => {
+        if (err) {
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            res.json(data.Item);
+        }
+    });
+})
+
 app.post('/errorHelpingData', (req, res) => {
     const body = req.body;
 

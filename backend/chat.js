@@ -12,22 +12,19 @@ const io = socketIo(server, {
     }
 });
 
-app.use(cors()); // CORS 미들웨어 사용
-
 io.on('connection', (socket) => {
-  console.log('a user connected');
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
+    socket.on('chat message', (msg, authuid) => {
+        io.emit('chat message', msg, authuid);
+    });
 
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-    io.emit('chat message', msg);
-  });
+    socket.on('chat exit', (user) => {
+        io.emit('chat exit', user);
+    })
 });
 
 const PORT = process.env.PORT || 50001;
+
 server.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+    console.log(`Server listening on port ${PORT}`);
 });
