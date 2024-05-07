@@ -107,6 +107,20 @@ app.post('/errorHelpingData', (req, res) => {
     })
 })
 
+app.get('/errorHelpingData/get', (req, res) => {
+    const params = {
+        TableName: 'HELPING',
+    };
+
+    docClient.scan(params, (err, data) => {
+        if (err) {
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            res.json(data.Items);
+        }
+    });
+})
+
 app.get('/detail', (req, res) => {
     const author = req.query.author;
     const type = req.query.type;

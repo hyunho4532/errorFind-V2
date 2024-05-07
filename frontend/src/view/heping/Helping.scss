@@ -13,3 +13,49 @@
     right: 0;
     margin: 20px auto;
 }
+
+.helping-main-title {
+    width: 50%;
+    text-align: left;
+    top: 0;
+    margin: 150px auto;
+    position: fixed;
+    align-items: center;
+    justify-items: center;
+    left: 0;
+    right: 0;
+}
+
+.helping-main-list {
+    width: 50%;
+    height: 140px;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    margin: 320px auto;
+    float: left;
+
+    .helping-main-card {
+        width: 340px;
+        height: 200px;
+        text-align: left;
+        padding-left: 8px;
+        border: 4px solid lavender;
+
+        .helping-main-card-content {
+            height: 130px;
+        }
+
+        .helping-main-situation {
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .helping-main-request {
+            font-size: 12px;
+            font-weight: bold;
+            padding-right: 8px;
+        }
+    }
+}

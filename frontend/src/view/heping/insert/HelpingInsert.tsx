@@ -10,12 +10,13 @@ function HelpingInsert() {
     const [errorSituationData, setErrorSituationData] = useState(null);
     const [errorRequestData, setErrorRequestData] = useState(null);
 
-    const userAuthUid = localStorage.getItem('authuid')
-    const userAuthUidFromJson = JSON.parse(userAuthUid!);
+    const userAuth = localStorage.getItem('user')
+    const userAuthFromJson = JSON.parse(userAuth!);
 
     useEffect(() => {
-        console.log(userAuthUidFromJson.authuid)
-    }, [userAuthUidFromJson.authuid])
+        console.log(userAuthFromJson.userData.authuid)
+        console.log(userAuthFromJson.userData.nickname)
+    }, [userAuthFromJson.userData.authuid, userAuthFromJson.userData.nickname])
 
     const handleErrorNameChange = (e: any) => {
         setErrorNameData(e.target.value);
@@ -32,10 +33,11 @@ function HelpingInsert() {
     const notify = () => {
 
         const data = {
-            id: userAuthUidFromJson.authuid,
-            errorName: errorNameData,
-            errorSituation: errorSituationData,
-            errorRequest: errorRequestData
+            id: userAuthFromJson.userData.authuid,
+            helpingUserName: userAuthFromJson.userData.nickname,
+            helpingName: errorNameData,
+            helpingSituation: errorSituationData,
+            helpingRequest: errorRequestData
         }
     
         axios.post('http://localhost:50000/errorHelpingData', data)
