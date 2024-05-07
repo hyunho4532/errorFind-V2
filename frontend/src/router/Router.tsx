@@ -6,6 +6,7 @@ import ErrorBoardDetail from "../component/board/detail/ErrorBoardDetail.tsx";
 import ErrorFindAverage from "../view/errorfind/average/ErrorFindAverage.tsx";
 import Helping from "../view/heping/Helping.tsx";
 import HelpingInsert from "../view/heping/insert/HelpingInsert.tsx";
+import HelpingChat from "../view/heping/chat/HelpingChat.tsx";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     {
         path: "/error/helping/insert",
         element: <HelpingInsert />
+    },
+    {
+        path: "/error/helping/chat",
+        element: <HelpingChat />
     }
 ])
 
