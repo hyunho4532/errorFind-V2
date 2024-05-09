@@ -27,18 +27,18 @@
 }
 
 .helping-main-list {
-    width: 50%;
+    width: 100%;
     height: 140px;
     top: 0;
     left: 0;
     right: 0;
-    position: fixed;
-    margin: 320px auto;
     float: left;
+    display: flex;
 
     .helping-main-card {
         width: 340px;
         height: 200px;
+        margin-right: 24px;
         text-align: left;
         padding-left: 8px;
         border: 4px solid lavender;

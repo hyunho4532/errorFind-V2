@@ -12,9 +12,13 @@ const io = socketIo(server, {
 });
 
 io.on('connection', socket=>{
-    socket.on('message',({authuid, message}) => {
-        console.log(authuid);
-        io.emit('message',({authuid, message}))
+
+    socket.on('joinRoom', (roomId) => {
+        socket.join(roomId);
+    });
+
+    socket.on('message', ({roomId, authuid, authname, message}) => {
+        io.to(roomId).emit('message', ({authuid, authname, message}))
     })
 })
 
