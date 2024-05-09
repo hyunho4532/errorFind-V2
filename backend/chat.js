@@ -12,8 +12,9 @@ const io = socketIo(server, {
 });
 
 io.on('connection', socket=>{
-    socket.on('message',({name,message}) => {
-        io.emit('message',({name, message}))
+    socket.on('message',({authuid, message}) => {
+        console.log(authuid);
+        io.emit('message',({authuid, message}))
     })
 })
 

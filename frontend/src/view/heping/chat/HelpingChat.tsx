@@ -3,45 +3,64 @@ import io, {Socket} from "socket.io-client";
 import { TextField, Button } from "@mui/material"; // Material UI에서 TextField 가져오기
 
 function App() {
-    const [state, setState] = useState({ message: "", name: "" });
+    const [state, setState] = useState({ message: "", authuid: "" });
     const [chat, setChat] = useState<any>([]);
+
+    const [userAuth, setUserAuth] = useState<any>('');
+
+    const auth: any = localStorage.getItem('authuid');
 
     const socketRef = useRef<Socket | null>(null);
 
     useEffect(() => {
+
+        setUserAuth(JSON.parse(auth).authuid);
+        console.log(userAuth);
+
         socketRef.current = io("http://localhost:50001");
-        socketRef.current.on("message", ({ name, message } : any) => {
-            setChat([...chat, { name, message }]);
+        socketRef.current.on("message", ({ authuid, message } : any) => {
+            setChat([...chat, { authuid, message }]);
+            console.log(chat);
         });
         return () => {
             socketRef.current!.disconnect();
         };
-    }, [chat]);
+    }, [chat, userAuth]);
 
     const onTextChange = (e: any) => {
         setState({ ...state, [e.target.name]: e.target.value });
     };
 
     const onMessageSubmit = (e: any) => {
-        const { name, message } = state;
-        socketRef.current!.emit("message", { name, message });
+
+        const authuid : any = userAuth;
+
+        const { message } = state;
+        socketRef.current!.emit("message", { authuid, message });
         e.preventDefault();
-        setState({ message: "", name });
+        setState({ message: "", authuid });
     };
 
     const renderChat = () => {
-        return chat.map(({ name, message } : any, index : any) => (
-            <div key={index}>
-                <h3>
-                    {name}: <span>{message}</span>
-                </h3>
-            </div>
+        return chat.map(({ authuid, message } : any, index : any) => (
+            authuid == userAuth ?
+                <div key={index} style={{ "textAlign": "right" }}>
+                    <h3>
+                        <span>{message}</span>
+                    </h3>
+                </div> :
+
+                <div key={index} style={{ "textAlign": "left" }}>
+                    <h3>
+                        <span>{message}</span>
+                    </h3>
+                </div>
         ));
     };
 
     return (
         <div className="card">
-            <div className="render-chat">
+            <div className="render-chat" style={{ "textAlign": "left"}}>
                 {renderChat()}
             </div>
             <form onSubmit={onMessageSubmit}>
