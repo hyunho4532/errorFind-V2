@@ -1,96 +1,68 @@
-import { useEffect, useState } from 'react'
-import './HelpingChat.scss'
-import io from 'socket.io-client';
-import axios from 'axios';
+import { useEffect, useRef, useState } from "react";
+import io, {Socket} from "socket.io-client";
+import { TextField, Button } from "@mui/material"; // Material UI에서 TextField 가져오기
 
-const socket = io('http://localhost:50001');
+function App() {
+    const [state, setState] = useState({ message: "", name: "" });
+    const [chat, setChat] = useState<any>([]);
 
-function HelpingChat() {
-
-    const [messages, setMessages] = useState<any>([]);
-    const [message, setMessage] = useState('');
-    const [chatUser, setChatUser] = useState<any>([]);
-    const [otherUserAuthUid, setOtherUserAuthUid] = useState<any>('');
-    const [chatUserAuthuid, setChatUserAuthuid] = useState<any>('');
-
-    const userAuth = localStorage.getItem('user');
-    const userAuthFromJson = JSON.parse(userAuth!);
+    const socketRef = useRef<Socket | null>(null);
 
     useEffect(() => {
-
-        socket.on('chat message', (msg, authuid) => {
-            setMessages([...messages, msg]);
-            setOtherUserAuthUid(messages);
+        socketRef.current = io("http://localhost:50001");
+        socketRef.current.on("message", ({ name, message } : any) => {
+            setChat([...chat, { name, message }]);
         });
-    
-        socket.on('chat exit', (user) => {
-            setChatUser(user);
-        });
-    
+        return () => {
+            socketRef.current!.disconnect();
+        };
+    }, [chat]);
 
-        const data = {
-            id: userAuthFromJson.userData.authuid
-        }
-
-        axios.post('http://localhost:50000/userData/detail', data)
-            .then(response => {
-                setChatUserAuthuid(response.data.id);
-            })
-            .catch(error => {
-                console.error(error);
-            })
-
-        
-        console.log(userAuthFromJson.userData.authuid)
-        console.log(chatUserAuthuid);
-        console.log(message);
-        console.log(chatUser);
-
-
-    }, [messages, chatUser, chatUserAuthuid]);
-
-    const handleMessageChange = (e: any) => {
-        setMessage(e.target.value);
-    }
-
-    const handleMessageSend = () => {
-        if (message.trim() !== '') {
-            socket.emit('chat message', userAuthFromJson.userData.authuid);
-            setMessage('');
-        }
+    const onTextChange = (e: any) => {
+        setState({ ...state, [e.target.name]: e.target.value });
     };
 
-    const exitHelpingChat = () => {
-        socket.emit('chat exit', userAuthFromJson.userData.nickname);
-        setChatUser('');
-    }
+    const onMessageSubmit = (e: any) => {
+        const { name, message } = state;
+        socketRef.current!.emit("message", { name, message });
+        e.preventDefault();
+        setState({ message: "", name });
+    };
+
+    const renderChat = () => {
+        return chat.map(({ name, message } : any, index : any) => (
+            <div key={index}>
+                <h3>
+                    {name}: <span>{message}</span>
+                </h3>
+            </div>
+        ));
+    };
 
     return (
-        <div className="helping-chat">
-            <ul>
-                { messages.map((msg: any, index: any) => (
-                    chatUserAuthuid == msg  ? 
-                        <li style={{ textAlign: 'right' }} key={index}>{msg}</li> :
-                        <li style={{ textAlign: 'left' }} key={index}>{msg}</li>
-                ))}
-            </ul>
+        <div className="card">
+            <div className="render-chat">
+                {renderChat()}
+            </div>
+            <form onSubmit={onMessageSubmit}>
+                <div style={{ "display": "flex" }}>
+                    <div>
+                        <TextField
+                            name="message"
+                            onChange={onTextChange}
+                            value={state.message}
+                            id="outlined-multiline-static"
+                            variant="outlined"
+                            label="Message"
+                            style={{ "width": "450px" }}
+                        />
+                    </div>
+                    <Button variant="contained" type="submit">Send Message</Button> {/* Send 버튼을 Material UI의 Button으로 대체 */}
+                </div>
+            </form>
 
-            { chatUser == '' ?
-            <div>
-                
-            </div> :
-            
-            <ul>
-                <li>{chatUser} 님이 나갔습니다!</li>
-            </ul>
-            }
-        
-            
-            <input type="text" value={message} onChange={handleMessageChange} />
-            <button onClick={handleMessageSend}>Send</button>
-            <button onClick={exitHelpingChat}>헬핑! 나가기</button>
         </div>
-    )
+    );
 }
 
-export default HelpingChat
+export default App;
