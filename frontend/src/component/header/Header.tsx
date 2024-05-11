@@ -13,6 +13,7 @@ function Header() {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [userModalIsOpen, setUserModalIsOpen] = useState(false);
+    const [userProfileSelect, setUserProfileSelect] = useState(false);
 
     const [userData, setUserData] = useRecoilState<User>(user)
 
@@ -52,6 +53,10 @@ function Header() {
         setUserData({ ...userData, errorhandler: e.target.value });
     }
 
+    const profileSelect = (userProfileSelect: boolean) => {
+        setUserProfileSelect(!userProfileSelect);
+    }
+
     useEffect(() => {
         
         console.log(storedEmail);
@@ -85,7 +90,17 @@ function Header() {
                 </nav>
 
                 <div className="header-main-title">
-                    <p className="header-main-email">{userData.email}</p>
+                    <p className="header-main-email" onClick={() => profileSelect(userProfileSelect)}>{userData.email}</p>
+
+                    { userProfileSelect ?
+                        <div style={{  "width": "90px", "height": "120px", "border": "1px solid black", float: "right" }}>
+
+                        </div>
+
+                        : 
+
+                        <p></p>
+                    }
 
                     {
                         userData.email === '' 
