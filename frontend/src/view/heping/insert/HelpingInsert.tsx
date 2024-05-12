@@ -57,6 +57,7 @@ function HelpingInsert() {
             <h4 className="helping-insert-title">* 헬핑은 내 화면을 공유하고, 다른 개발자가 화면을 보면서 에러를 해결합니다!</h4>
             <h5 className="helping-insert-title">* 에러를 등록하고, 다른 사람들이 댓글로 에러를 분석해도 안될 때 이용해주세요.</h5>
             <div className="helping-insert-component">
+                
                 <h3>1. 에러가 어디서 발생하셨나요? 💣</h3>
                 <select className="helping-insert-select" onChange={handleErrorNameChange}>
                     <option>안드로이드</option>

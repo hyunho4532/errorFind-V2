@@ -33,9 +33,22 @@ const UserProfileCard = () => {
                     { userAuthFromJson.userData.nickname }
                 </p>
 
-                <p>
-                    { userAuthBoardCount }
-                </p>
+                <div> 
+                    <div className="header-profile-info">
+                        <p>게시 글</p>
+                        <p>포인트</p>
+                    </div>
+
+                    <div className="header-profile-info-data">
+                        <p>
+                            { userAuthBoardCount }
+                        </p>
+
+                        <p>
+                            0점
+                        </p>
+                    </div>
+                </div>
 
                 <p className="header-profile-position">
                     포지션: {userAuthFromJson.userData.position}

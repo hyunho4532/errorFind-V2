@@ -3,7 +3,7 @@ const https = require('https');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const aws = require("aws-sdk");
-const {errorTypeFromData} = require("./api/errorType/errorTypeFromData");
+const {errorTypeFromData, errorTypeFromDataAndroid} = require("./api/errorType/errorTypeFromData");
 const {platformFromData} = require("./api/platform/platformFromData");
 
 const docClient = new aws.DynamoDB.DocumentClient({ region: 'ap-northeast-2' });
@@ -24,10 +24,20 @@ aws.config.update ({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 })
 
-app.post('/errorTypeData', (req, res) => {
+app.post('/errorTypeDataFromWeb', (req, res) => {
     https.get('https://czwpwf5o4m.execute-api.ap-northeast-2.amazonaws.com/stage/error/write', (response) => {
 
         errorTypeFromData(req, res, response);
+
+    }).on('error', (error) => {
+        console.error(error);
+    })
+})
+
+app.post('/errorTypeDataFromAndroid', (req, res) => {
+    https.get('https://czwpwf5o4m.execute-api.ap-northeast-2.amazonaws.com/stage/error/write', (response) => {
+
+        errorTypeFromDataAndroid(req, res, response);
 
     }).on('error', (error) => {
         console.error(error);

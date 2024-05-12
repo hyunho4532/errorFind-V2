@@ -29,9 +29,19 @@
 
 .header-profile {
     width: 300px;
-    height: 280px;
+    height: 360px;
     transform: translateX(400px);
     margin-top: 60px;
+
+    .header-profile-info {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .header-profile-info-data {
+        display: flex;
+        justify-content: space-around;
+    }
 
     .header-profile-nickname {
         font-weight: bold;
@@ -41,12 +51,13 @@
 
     .header-profile-position {
         float: left;
-        padding-left: 12px;
+        padding-left: 24px;
+        margin-top: 24px;
     }
 
     .header-profile-errorhandler {
         float: left;
-        padding-left: 12px;
+        padding-left: 24px;
     }
 
     .header-profile-button-component {
