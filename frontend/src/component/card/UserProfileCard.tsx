@@ -41,7 +41,7 @@ const UserProfileCard = () => {
 
                     <div className="header-profile-info-data">
                         <p>
-                            { userAuthBoardCount }
+                            { userAuthBoardCount }개
                         </p>
 
                         <p>
