@@ -7,6 +7,7 @@ import ErrorFindAverage from "../view/errorfind/average/ErrorFindAverage.tsx";
 import Helping from "../view/heping/Helping.tsx";
 import HelpingInsert from "../view/heping/insert/HelpingInsert.tsx";
 import HelpingChat from "../view/heping/chat/HelpingChat.tsx";
+import ErrorFindProfile from "../view/errorfind/profile/ErrorFindProfile.tsx";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
     {
         path: "/error/helping/chat",
         element: <HelpingChat />
+    },
+    {
+        path: "/error/profile",
+        element: <ErrorFindProfile />
     }
 ])
 

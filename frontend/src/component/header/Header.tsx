@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil';
 import { user } from '../../recoil/Atom';
 import userInfoInsert from '../../data/user/UserInfo';
 import { Link } from 'react-router-dom';
+import UserProfileCard from '../card/UserProfileCard';
 
 function Header() {
 
@@ -92,16 +93,6 @@ function Header() {
                 <div className="header-main-title">
                     <p className="header-main-email" onClick={() => profileSelect(userProfileSelect)}>{userData.email}</p>
 
-                    { userProfileSelect ?
-                        <div style={{  "width": "90px", "height": "120px", "border": "1px solid black", float: "right" }}>
-
-                        </div>
-
-                        : 
-
-                        <p></p>
-                    }
-
                     {
                         userData.email === '' 
                         ? <button className="header-login" onClick={loginClick}>로그인</button>
@@ -112,6 +103,10 @@ function Header() {
                     <p className="header-error-write" onClick={errorInsertClick}>에러 등록하기</p>
                 </div>
             </div>
+
+            { userProfileSelect ? 
+                <UserProfileCard /> : <p></p>
+            }        
 
             <Modal
                 open={modalIsOpen}

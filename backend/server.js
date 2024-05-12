@@ -228,6 +228,23 @@ app.get('/errorBoardData/get', (req, res) => {
     });
 })
 
+app.post('/profile/boardData/count', (req, res) => {
+
+    const authuid = req.body.authuid;
+    
+    const params = {
+        TableName: 'errorBoard',
+    };
+
+    docClient.scan(params, (err, data) => {
+        if (err) {
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            res.json(data.Items.filter(item => item.authUid === authuid).length);
+        }
+    });
+})
+
 app.listen(50000, () => {
     console.log('연결 완료')
 })

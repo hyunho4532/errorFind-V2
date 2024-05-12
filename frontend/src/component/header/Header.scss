@@ -27,6 +27,37 @@
     }
 }
 
+.header-profile {
+    width: 300px;
+    height: 280px;
+    transform: translateX(400px);
+    margin-top: 60px;
+
+    .header-profile-nickname {
+        font-weight: bold;
+        font-size: 16px;
+        padding-top: 4px;
+    }
+
+    .header-profile-position {
+        float: left;
+        padding-left: 12px;
+    }
+
+    .header-profile-errorhandler {
+        float: left;
+        padding-left: 12px;
+    }
+
+    .header-profile-button-component {
+        width: 260px;
+        margin-top: 16px;
+        background-color: cornflowerblue;
+        font-weight: bold;
+        color: white;
+    }
+}
+
 .modal {
     width: 650px;
     height: 500px;
