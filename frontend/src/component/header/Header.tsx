@@ -8,11 +8,13 @@ import { useRecoilState } from 'recoil';
 import { user } from '../../recoil/Atom';
 import userInfoInsert from '../../data/user/UserInfo';
 import { Link } from 'react-router-dom';
+import UserProfileCard from '../card/UserProfileCard';
 
 function Header() {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [userModalIsOpen, setUserModalIsOpen] = useState(false);
+    const [userProfileSelect, setUserProfileSelect] = useState(false);
 
     const [userData, setUserData] = useRecoilState<User>(user)
 
@@ -52,6 +54,10 @@ function Header() {
         setUserData({ ...userData, errorhandler: e.target.value });
     }
 
+    const profileSelect = (userProfileSelect: boolean) => {
+        setUserProfileSelect(!userProfileSelect);
+    }
+
     useEffect(() => {
         
         console.log(storedEmail);
@@ -85,7 +91,7 @@ function Header() {
                 </nav>
 
                 <div className="header-main-title">
-                    <p className="header-main-email">{userData.email}</p>
+                    <p className="header-main-email" onClick={() => profileSelect(userProfileSelect)}>{userData.email}</p>
 
                     {
                         userData.email === '' 
@@ -97,6 +103,10 @@ function Header() {
                     <p className="header-error-write" onClick={errorInsertClick}>에러 등록하기</p>
                 </div>
             </div>
+
+            { userProfileSelect ? 
+                <UserProfileCard /> : <p></p>
+            }        
 
             <Modal
                 open={modalIsOpen}

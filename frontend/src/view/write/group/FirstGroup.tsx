@@ -34,7 +34,8 @@
                     <h2 className="error-write-board-component-where-title">1. 에러가 어디에서 발생했나요? 🤔🤔</h2>
                     <div className="selectBox">
                         <select name="fruits" className="select" value={errorBoardData.selectedPlatformData} onChange={handleSelectChange}>
-                            { platformData.map((value) => <option>{value}</option>) }
+                            { platformData.map((value) => <option>{value}</option> ) }
+                            
                         </select>
                     </div>
                 </div>

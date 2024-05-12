@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import './Helping.scss'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Card } from '@mui/material';
+import HorizontalScroll from '../../util/scroll/HorizontalScroll';
 
 function Helping() {
 
     const [errorHelpingData, setErrorHelpingData] = useState([]);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         axios.get("http://localhost:50000/errorHelpingData/get")
@@ -17,6 +19,9 @@ function Helping() {
             .catch(error => {
                 console.error(error);  
             })
+        
+        
+
     }, [errorHelpingData])
 
 
@@ -35,23 +40,28 @@ function Helping() {
                 <h4>* 에러 분석을 기여할 시 포인트가 지급됩니다!</h4>
             </div>
 
-            <div className="helping-main-list">
-                {errorHelpingData.map((data: any, index: any) => (
-                    <div className="helping-main-card" key={index}>
-                        <Link to={`/error/helping/chat?uid=${data.id}`}>
-                            <Card>
-                                <div className="helping-main-card-content">
-                                    <p>에러 발생: {data.helpingName}</p>
-                                    <p className="helping-main-situation">{data.helpingSituation}</p>
-                                    <p className="helping-main-request">{data.helpingRequest}</p>
-                                </div>
-                                <div className="helping-main-card-footer">
-                                    <p>제시자: {data.helpingUserName}</p>
-                                </div>
-                            </Card>
-                        </Link>
-                    </div>
-                ))}
+
+            <HorizontalScroll container={containerRef.current} />
+
+            <div ref={containerRef} className="helping-main-list" style={{ overflowY: 'scroll', overflowX: 'auto', whiteSpace: 'nowrap' }}>
+                <div style={{ display: 'flex', WebkitOverflowScrolling: 'touch' }}>
+                    {errorHelpingData.map((data: any, index: any) => (
+                        <div className="helping-main-card" key={index} style={{ marginRight: '10px' }}>
+                            <Link to={`/error/helping/chat?uid=${data.id}`}>
+                                <Card>
+                                    <div className="helping-main-card-content">
+                                        <p>에러 발생: {data.helpingName}</p>
+                                        <p className="helping-main-situation">{data.helpingSituation}</p>
+                                        <p className="helping-main-request">{data.helpingRequest}</p>
+                                    </div>
+                                    <div className="helping-main-card-footer">
+                                        <p>제시자: {data.helpingUserName}</p>
+                                    </div>
+                                </Card>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

@@ -80,6 +80,14 @@ function App() {
         ));
     };
 
+    const chatExit = () => {
+
+        const roomId = uid;
+        const authname = userNickname;
+
+        socketRef.current!.emit("chatExit", { roomId, authname });
+    }
+
     return (
         <div className="card">
             <div className="render-chat" style={{ "textAlign": "left"}}>
@@ -98,7 +106,8 @@ function App() {
                             style={{ "width": "450px" }}
                         />
                     </div>
-                    <Button variant="contained" type="submit">Send Message</Button> {/* Send 버튼을 Material UI의 Button으로 대체 */}
+                    <Button variant="contained" type="submit">전송</Button>
+                    <Button type="submit" onClick={chatExit}>헬핑! 나가기</Button>
                 </div>
             </form>
 
