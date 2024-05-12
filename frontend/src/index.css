@@ -11,6 +11,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --background-color: #fff; /* 기본 배경색 - 라이트 모드 */
+  --text-color: #333; /* 기본 텍스트 색 - 라이트 모드 */
+}
+
+.dark-mode {
+  --background-color: #333; /* 다크 모드 배경색 */
+  --text-color: #fff; /* 다크 모드 텍스트 색 */
 }
 
 a {
@@ -28,6 +36,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 h1 {

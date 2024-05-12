@@ -1,11 +1,28 @@
-import { Card } from "@mui/material"
+import { Card, Switch } from "@mui/material"
+import { useState } from "react";
 
 function ErrorFindProfile() {
-    return (
-        <div>
-            <Card style={{ width: "600px", height: "40px" }}>
 
+    const [themeIsNight, setThemeIsNight] = useState(false);
+
+    const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
+    const themeChange = (theme: boolean) => {
+        setThemeIsNight(theme);
+    }
+
+    return (
+        <div style={{ backgroundColor: themeIsNight ? "black" : "whitesmoke" }}>
+            <Card style={{ width: "600px", height: "60px", display: "flex", justifyContent: "space-between" }}>
+                <p style={{ textAlign: "start", paddingLeft: "16px", fontWeight: "bold" }}>다크 모드 활성화</p>
+                
+                <div style={{ marginTop: "12px" }}>
+                    <Switch {...label} onChange={() => themeChange(!themeIsNight)} />
+                </div>
+                
             </Card>
+
+            
         </div>
     )
 }
