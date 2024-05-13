@@ -11,7 +11,7 @@ function Helping() {
     const containerRef = useRef(null);
 
     useEffect(() => {
-        axios.get("http://localhost:50000/errorHelpingData/get")
+        axios.get("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorHelpingData/get")
             .then(response => {
                 setErrorHelpingData(response.data);
                 console.log(errorHelpingData);
