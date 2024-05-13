@@ -1,5 +1,6 @@
 import { Card, Switch } from "@mui/material"
 import { useState } from "react";
+import '../../../index.css'
 
 function ErrorFindProfile() {
 
@@ -12,7 +13,7 @@ function ErrorFindProfile() {
     }
 
     return (
-        <div style={{ backgroundColor: themeIsNight ? "black" : "whitesmoke" }}>
+        <div className={themeIsNight ? 'dark-mode' : ''}>
             <Card style={{ width: "600px", height: "60px", display: "flex", justifyContent: "space-between" }}>
                 <p style={{ textAlign: "start", paddingLeft: "16px", fontWeight: "bold" }}>다크 모드 활성화</p>
                 
