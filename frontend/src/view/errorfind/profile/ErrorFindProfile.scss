@@ -1,6 +1,5 @@
 .errorfind-profile {
-    width: 70%;
-    margin-left: 12%;
+    width: 90%;
 
     .auth-profile-nickname-input {
         width: 380px;
@@ -23,6 +22,7 @@
         height: 36px;
         border: 3px solid rgb(221, 221, 221);
         float: left;
+        padding-left: 8px;
     }
 
     .auth-profile-errorhandler-input {
@@ -30,6 +30,17 @@
         height: 36px;
         border: 3px solid rgb(221, 221, 221);
         float: left;
+        padding-left: 8px;
+    }
+
+    .auth-profile-insert-button {
+        width: 400px;
+        height: 50px;
+        margin-top: 26px;
+        background-color: cornflowerblue;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
     }
 
     .auth-profile-dark-theme {
@@ -37,7 +48,7 @@
         height: 60px;
         display: flex;
         justify-content: space-between;
-        margin-top: 120px;
+        margin-top: 60px;
     }
 
     .auth-profile-account-exit {

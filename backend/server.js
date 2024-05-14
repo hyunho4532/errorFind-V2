@@ -128,6 +128,14 @@ app.post('/userData/detail', (req, res) => {
     });
 })
 
+app.post('/userData/update', (req, res) => {
+    
+    const authuid = req.body.authuid;
+    const nickname = req.body.nickname;
+
+    console.log(authuid);
+})
+
 app.post('/errorHelpingData', (req, res) => {
     const body = req.body;
 
