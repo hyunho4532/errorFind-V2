@@ -14,7 +14,7 @@ function SecondGroup() {
 
 
     useEffect(() => {
-        axios.post("http://localhost:50000/errorTypeDataFromWeb")
+        axios.post("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorTypeDataFromWeb")
             .then(response => {
                 setErrorTypeDataFromWeb(response.data);
             })
@@ -22,7 +22,7 @@ function SecondGroup() {
                 console.error(error);
             })
 
-        axios.post("http://localhost:50000/errorTypeDataFromAndroid")
+        axios.post("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorTypeDataFromAndroid")
             .then(response => {
                 setErrorTypeDataFromAndroid(response.data);
             })
@@ -31,7 +31,7 @@ function SecondGroup() {
             })
 
 
-        axios.post("http://localhost:50000/errorTypeDataFromDevOps")
+        axios.post("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorTypeDataFromDevOps")
             .then(response => {
                 setErrorTypeDataFromDevOps(response.data);
             })
