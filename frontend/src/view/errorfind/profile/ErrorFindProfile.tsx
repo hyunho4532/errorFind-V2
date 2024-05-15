@@ -32,16 +32,20 @@ function ErrorFindProfile() {
         <div className='errorfind-profile'>
             <div className='errorfind-profile-component'>
                 <div style={{ width: '120px', height: '120px', borderRadius: '70%', overflow: 'hidden', border: '1.5px solid black', alignItems: 'center', justifyContent: "center", margin: '0 auto' }}>
-                    <img src="../../../public/guest_logo.png" alt="rounded_image" style={{ width: '100%', height: '100%', display: 'block' }} />
+                    <img src={userAuthFromJson.userData.profile} alt="rounded_image" style={{ width: '100%', height: '100%', display: 'block' }} />
                 </div>
 
-                <div style={{ display: "flex", justifyContent: "space-around" }}>
-                    <p style={{ fontSize: "16px" }}>게시글</p>
+                <div className="errorfind-profile-nickname">
+                    <p className="errorfind-profile-nickname-text">{userAuthFromJson.userData.nickname}님 환영합니다!</p>
+                </div>
+
+                <div className="errorfind-profile-info-post">
+                    <p className="errorfind-profile-info-post-count">게시글</p>
                     <p>포인트</p>
                 </div>
 
-                <div style={{ display: "flex", justifyContent: "space-around" }}>
-                    <p>{userAuthBoardCount}개</p>
+                <div className="errorfind-profile-info-point">
+                    <p className="errorfind-profile-info-point-count">{userAuthBoardCount}개</p>
                     <p>0점</p> 
                 </div>
             </div>

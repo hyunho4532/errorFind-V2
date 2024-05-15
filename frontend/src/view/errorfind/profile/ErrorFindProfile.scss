@@ -1,6 +1,34 @@
 .errorfind-profile {
     width: 90%;
 
+    .errorfind-profile-nickname {
+        margin-top: 30px;
+
+        .errorfind-profile-nickname-text {
+            font-size: 22px;
+            font-weight: bold;
+        }
+    }
+
+    .errorfind-profile-info-post {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+
+        .errorfind-profile-info-post-count {
+            font-size: 16px;
+        }
+    }
+
+    .errorfind-profile-info-point {
+        display: flex;
+        justify-content: space-around;
+
+        .errorfind-profile-info-point-count {
+            font-size: 16px;
+        }
+    }
+
     .auth-profile-nickname-input {
         width: 380px;
         height: 36px;

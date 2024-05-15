@@ -59,7 +59,7 @@ class ProfileInputForm extends React.Component<ProfileInputProps> {
     render(): React.ReactNode {
         return (
             <div>
-                <div style={{ marginTop: "40px" }}>
+                <div style={{ marginTop: "70px" }}>
                     <p style={{ textAlign: "start" }}>닉네임</p>
                     <input type="text" className="auth-profile-nickname-input" onChange={(nickname) => this.userAuthChange(nickname, 'nickname')} value={this.state.nickname}></input>
                 </div>
