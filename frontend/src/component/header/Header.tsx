@@ -127,13 +127,14 @@ function Header() {
 
                                             const email = credentialResponseDecoded.email;
                                             const authuid = credentialResponseDecoded.jti;
-
+                                            const profile = credentialResponseDecoded.picture;
                                             
                                             localStorage.setItem('userEmail', JSON.stringify({ email }));
                                             localStorage.setItem('authuid', JSON.stringify({ authuid }));
-                                            
+                                            localStorage.setItem('profile', JSON.stringify({ profile }));
 
-                                            setUserData({ ...userData, email: email })
+                                            setUserData({ ...userData, email: email });
+                                            setUserData({ ...userData, profile: profile });
                                             setUserData({ ...userData, authuid: authuid });
                                             
                                             setModalIsOpen(false);

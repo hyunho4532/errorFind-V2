@@ -27,6 +27,7 @@ export const user = atom<User>({
     key: "user",
     default: {
         authuid: "",
+        profile: "",
         email: "",
         nickname: "",
         position: "",

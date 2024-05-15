@@ -6,8 +6,11 @@ const userInfoInsert = (userData: User) => {
         id: userData.authuid,
         email: userData.email,
         nickname: userData.nickname,
-        errorhandler: userData.errorhandler
+        errorhandler: userData.errorhandler,
+        profile: userData.profile,
     }
+
+    console.log(userData.profile);
 
     localStorage.setItem('user', JSON.stringify({ userData }));
 
