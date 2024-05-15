@@ -4,11 +4,12 @@ import '../../../index.css'
 import axios from "axios";
 import './ErrorFindProfile.scss'
 import { NewUser } from "../../../model/NewUser";
+import ProfileInputForm from "../../../component/form/ProfileInputForm";
 
 function ErrorFindProfile() {
-
     const [themeIsNight, setThemeIsNight] = useState(false);
     const [userAuthBoardCount, setUserAuthBoardCount] = useState(0);
+    const [nickname, setNickname] = useState('');
     const [newUser, setNewUser] = useState<NewUser>({
         authuid: '',
         email: '',
@@ -17,19 +18,12 @@ function ErrorFindProfile() {
         errorhandler: ''
     });
 
-    const userAuth = localStorage.getItem('user');
-
-    const userAuthFromJson = JSON.parse(userAuth!);
-
-    const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-    const themeChange = (theme: boolean) => {
-        setThemeIsNight(theme);
-    }
+    const userAuthUid = localStorage.getItem('user');
+    const userAuthFromJson = JSON.parse(userAuthUid!);
 
     const data = {
-        authuid: userAuthFromJson.userData.authuid
-    }
+        id: userAuthFromJson.userData.authuid
+    };
 
     useEffect(() => {
         axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/profile/boardData/count', data)
@@ -39,43 +33,17 @@ function ErrorFindProfile() {
             .catch(error => {
                 console.error(error);
             });
+
+        axios.post('http://localhost:50000/userData/detail', data)
+            .then(response => {
+                setNickname(response.data.nickname);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     });
 
-    const userAuthNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewUser({
-            ...newUser,
-            nickname: e.target.value
-        });
-    }
-
-    const userAuthEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewUser({
-            ...newUser,
-            email: e.target.value
-        })
-    }
-
-    const userAuthPositionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewUser({
-            ...newUser,
-            position: e.target.value
-        })
-    }
-
-    const userAuthErrorHandlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewUser({
-            ...newUser,
-            errorhandler: e.target.value
-        })
-    }
-
     const authProfileInsert = () => {
-
-        const data = {
-            authuid: userAuthFromJson.userData.authuid,
-            nickname: userAuthFromJson.userData.nickname
-        }
-
         localStorage.setItem('user', JSON.stringify ({
             ...userAuthFromJson,
             userData: {
@@ -86,15 +54,7 @@ function ErrorFindProfile() {
                 position: newUser.position,
             }
         }));
-
-        axios.post('http://localhost:50000/userData/update', data)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+    };
 
     return (
         <div className='errorfind-profile'>
@@ -104,7 +64,7 @@ function ErrorFindProfile() {
                 </div>
                 
                 <div>
-                    <p style={{ fontSize: "24px", fontWeight: "bold" }}>{userAuthFromJson.userData.nickname}님 안녕하세요!</p>
+                    <p style={{ fontSize: "24px", fontWeight: "bold" }}>{nickname}님 안녕하세요!</p>
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -114,28 +74,25 @@ function ErrorFindProfile() {
 
                 <div style={{ display: "flex", justifyContent: "space-around" }}>
                     <p>{userAuthBoardCount}개</p>
-                    <p>0점</p>
+                    <p>0점</p> 
                 </div>
             </div>
 
-            <div style={{ marginTop: "40px" }}>
-                <p style={{ textAlign: "start" }}>닉네임</p>
-                <input type="text" className="auth-profile-nickname-input" onChange={userAuthNicknameChange} placeholder={userAuthFromJson.userData.nickname}></input>
-            </div>
+            <ProfileInputForm />
 
             <div style={{ marginTop: "90px" }}>
                 <p style={{ textAlign: "start" }}>이메일</p>
-                <input type="text" className="auth-profile-email-input" onChange={userAuthEmailChange} placeholder={userAuthFromJson.userData.email}></input>
+                <input type="text" className="auth-profile-email-input" placeholder={userAuthFromJson.userData.email}></input>
             </div>
 
             <div style={{ marginTop: "90px" }}>
                 <p style={{ textAlign: "start" }}>포지션</p>
-                <input type="text" className="auth-profile-position-input" onChange={userAuthPositionChange} placeholder={userAuthFromJson.userData.position}></input>
+                <input type="text" className="auth-profile-position-input" placeholder={userAuthFromJson.userData.position}></input>
             </div>
 
             <div style={{ marginTop: "90px" }}>
                 <p style={{ textAlign: "start" }}>에러 대처 상황</p>
-                <input type="text" className="auth-profile-errorhandler-input" onChange={userAuthErrorHandlerChange} placeholder={userAuthFromJson.userData.errorhandler}></input>
+                <input type="text" className="auth-profile-errorhandler-input" placeholder={userAuthFromJson.userData.errorhandler}></input>
             </div>
 
             <button className="auth-profile-insert-button" onClick={authProfileInsert}>프로필 저장하기</button>
@@ -144,7 +101,7 @@ function ErrorFindProfile() {
                 <p style={{ textAlign: "start", paddingLeft: "16px", fontWeight: "bold" }}>다크 모드 활성화</p>
                 
                 <div style={{ marginTop: "12px" }}>
-                    <Switch {...label} onChange={() => themeChange(!themeIsNight)} />
+                    <Switch onChange={() => setThemeIsNight(!themeIsNight)} />
                 </div>
                 
             </Card>
@@ -157,7 +114,7 @@ function ErrorFindProfile() {
                 </div>
             </Card>
         </div>
-    )
+    );
 }
 
-export default ErrorFindProfile
+export default ErrorFindProfile;

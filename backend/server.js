@@ -134,6 +134,7 @@ app.post('/userData/update', (req, res) => {
     const nickname = req.body.nickname;
 
     console.log(authuid);
+    console.log(nickname);
 })
 
 app.post('/errorHelpingData', (req, res) => {
