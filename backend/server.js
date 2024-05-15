@@ -257,6 +257,34 @@ app.get('/errorBoardData/get', (req, res) => {
     });
 })
 
+app.post('/errorBoardData/update', (req, res) => {
+
+    const authuid = req.body.authuid;
+    const author = req.body.nickname;
+
+    const params = {
+        TableName: 'errorBoard',
+        Key: {
+            'id': authuid
+        },
+        UpdateExpression: 'set #author = :author',
+        ExpressionAttributeNames: {
+            '#author': 'author'
+        },
+        ExpressionAttributeValues: {
+            ':author': author,
+        }
+    };
+
+    docClient.update(params, (err, data) => {
+        if (err) {
+            console.error('Unable to update item. Error:', JSON.stringify(err, null, 2));
+        } else {
+            console.log('UpdateItem succeeded:', JSON.stringify(data, null, 2));
+        }
+    })
+})
+
 app.post('/profile/boardData/count', (req, res) => {
 
     const authuid = req.body.authuid;
