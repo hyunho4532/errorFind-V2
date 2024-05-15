@@ -9,11 +9,12 @@ function SecondGroup() {
 
     const [errorTypeDataFromWeb, setErrorTypeDataFromWeb] = useState([]);
     const [errorTypeDataFromAndroid, setErrorTypeDataFromAndroid] = useState([]);
+    const [errorTypeDataFromDevOps, setErrorTypeDataFromDevOps] = useState([]);
     const [errorBoardData, setErrorBoardData] = useRecoilState<ErrorBoard>(errorBoard)
 
 
     useEffect(() => {
-        axios.post("http://localhost:50000/errorTypeDataFromWeb")
+        axios.post("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorTypeDataFromWeb")
             .then(response => {
                 setErrorTypeDataFromWeb(response.data);
             })
@@ -21,9 +22,18 @@ function SecondGroup() {
                 console.error(error);
             })
 
-        axios.post("http://localhost:50000/errorTypeDataFromAndroid")
+        axios.post("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorTypeDataFromAndroid")
             .then(response => {
                 setErrorTypeDataFromAndroid(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
+
+        axios.post("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorTypeDataFromDevOps")
+            .then(response => {
+                setErrorTypeDataFromDevOps(response.data);
             })
             .catch(error => {
                 console.error(error);
@@ -34,13 +44,7 @@ function SecondGroup() {
     console.log(errorBoardData.selectedPlatformData);
 
 
-    const handleWebSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        const errorTypeData = e.target.value;
-
-        setErrorBoardData ({ ...errorBoardData, errorTypeData: errorTypeData });
-    }
-
-    const handleAndroidSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const errorTypeData = e.target.value;
 
         setErrorBoardData ({ ...errorBoardData, errorTypeData: errorTypeData });
@@ -52,18 +56,18 @@ function SecondGroup() {
                 <h2 className="error-write-board-component-kind">2. 에러 종류를 선택해주세요 😏😏</h2>
                 <div className="selectBox">
                     { errorBoardData.selectedPlatformData == '웹' ?
-                        <select name="fruits" className="select" value={errorBoardData.errorTypeData} onChange={handleWebSelectChange}>
+                        <select name="fruits" className="select" value={errorBoardData.errorTypeData} onChange={handleSelectChange}>
                             { errorTypeDataFromWeb.map((value) => <option>{value}</option> )}
                         </select>
                     
                     : errorBoardData.selectedPlatformData == '안드로이드' ?
-                        <select name="fruits" className="select" value={errorBoardData.errorTypeData} onChange={handleAndroidSelectChange}>
+                        <select name="fruits" className="select" value={errorBoardData.errorTypeData} onChange={handleSelectChange}>
                             { errorTypeDataFromAndroid.map((value) => <option>{value}</option>)}
                         </select>
 
                     : errorBoardData.selectedPlatformData == 'DevOps' ?
-                        <select>
-
+                        <select name="fruits" className="select" value={errorBoardData.errorTypeData} onChange={handleSelectChange}>
+                            { errorTypeDataFromDevOps.map((value) => <option>{value}</option>)}
                         </select>
                     : <p></p>
                 }   

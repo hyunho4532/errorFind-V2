@@ -2,7 +2,6 @@ import { useRecoilValue } from 'recoil'
 import '../../view/write/scss/component/Button.scss'
 import { ErrorBoard } from '../../model/ErrorBoard'
 import { errorBoard } from '../../recoil/Atom'
-import uuid from 'react-uuid'
 import axios from 'axios';
 import { useState } from 'react'
 import { Button, Modal, Typography } from '@mui/material'
@@ -22,8 +21,7 @@ function ErrorInsertButton() {
     const formattedDateData = date.toLocaleDateString('ko-KR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
     const data = {
-        id: uuid(),
-        authUid: auth.authuid,
+        id: auth.authuid,
         author: userAuthor.userData.nickname,
         selectedPlatformData: errorBoardData.selectedPlatformData,
         errorTypeData: errorBoardData.errorTypeData,
@@ -37,7 +35,7 @@ function ErrorInsertButton() {
     }
 
     const errorInsertButton= () => {
-        axios.post('http://localhost:50000/errorBoardData', data)
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData', data)
             .then(response => {
                 console.log('응답 받음:', response.data);
             })

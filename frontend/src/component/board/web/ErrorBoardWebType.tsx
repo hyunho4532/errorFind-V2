@@ -8,7 +8,7 @@ function ErrorBoardWebType() {
     const [errorBoardWebTypeData, setErrorBoardWebTypeData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:50000/errorBoardData/get/web")
+        axios.get("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData/get/web")
             .then((response) => {
                 setErrorBoardWebTypeData(response.data);
             })

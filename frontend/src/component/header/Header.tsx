@@ -19,6 +19,7 @@ function Header() {
     const [userData, setUserData] = useRecoilState<User>(user)
 
     const storedEmail = localStorage.getItem('userEmail');
+    const storedAuthUid = localStorage.getItem('authuid');
 
     const clientId = '975201873312-kkmb6gv4usaond240kaecujn4vmqd695.apps.googleusercontent.com'
 
@@ -61,12 +62,15 @@ function Header() {
     useEffect(() => {
         
         console.log(storedEmail);
+        console.log(storedAuthUid);
     
         if (storedEmail !== null) {
             const userEmail = JSON.parse(storedEmail);
-    
+            const userAuthUid = JSON.parse(storedAuthUid!);
+
             setUserData(prevUserData => ({ ...prevUserData, email: userEmail.email }));
-    
+            setUserData(prevUserData => ({ ...prevUserData, authuid: userAuthUid.authuid }));
+
             console.log(userEmail.email);
         }
     
@@ -127,14 +131,15 @@ function Header() {
 
                                             const email = credentialResponseDecoded.email;
                                             const authuid = credentialResponseDecoded.jti;
-
+                                            const profile = credentialResponseDecoded.picture;
                                             
                                             localStorage.setItem('userEmail', JSON.stringify({ email }));
                                             localStorage.setItem('authuid', JSON.stringify({ authuid }));
+                                            localStorage.setItem('profile', JSON.stringify({ profile }));
                                             
-
-                                            setUserData({ ...userData, email: email })
                                             setUserData({ ...userData, authuid: authuid });
+                                            setUserData({ ...userData, email: email });
+                                            setUserData({ ...userData, profile: profile });
                                             
                                             setModalIsOpen(false);
                                             setUserModalIsOpen(true);

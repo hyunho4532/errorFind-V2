@@ -3,7 +3,7 @@ const https = require('https');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const aws = require("aws-sdk");
-const {errorTypeFromData, errorTypeFromDataAndroid} = require("./api/errorType/errorTypeFromData");
+const {errorTypeFromData, errorTypeFromDataAndroid, errorTypeFromDataDevOps} = require("./api/errorType/errorTypeFromData");
 const {platformFromData} = require("./api/platform/platformFromData");
 
 const docClient = new aws.DynamoDB.DocumentClient({ region: 'ap-northeast-2' });
@@ -38,6 +38,16 @@ app.post('/errorTypeDataFromAndroid', (req, res) => {
     https.get('https://czwpwf5o4m.execute-api.ap-northeast-2.amazonaws.com/stage/error/write', (response) => {
 
         errorTypeFromDataAndroid(req, res, response);
+
+    }).on('error', (error) => {
+        console.error(error);
+    })
+})
+
+app.post('/errorTypeDataFromDevOps', (req, res) => {
+    https.get('https://czwpwf5o4m.execute-api.ap-northeast-2.amazonaws.com/stage/error/write', (response) => {
+
+        errorTypeFromDataDevOps(req, res, response);
 
     }).on('error', (error) => {
         console.error(error);
@@ -116,6 +126,15 @@ app.post('/userData/detail', (req, res) => {
             res.json(data.Item);
         }
     });
+})
+
+app.post('/userData/update', (req, res) => {
+    
+    const authuid = req.body.authuid;
+    const nickname = req.body.nickname;
+
+    console.log(authuid);
+    console.log(nickname);
 })
 
 app.post('/errorHelpingData', (req, res) => {
@@ -236,6 +255,34 @@ app.get('/errorBoardData/get', (req, res) => {
             res.json(data.Items);
         }
     });
+})
+
+app.post('/errorBoardData/update', (req, res) => {
+
+    const authuid = req.body.authuid;
+    const author = req.body.nickname;
+
+    const params = {
+        TableName: 'errorBoard',
+        Key: {
+            'id': authuid
+        },
+        UpdateExpression: 'set #author = :author',
+        ExpressionAttributeNames: {
+            '#author': 'author'
+        },
+        ExpressionAttributeValues: {
+            ':author': author,
+        }
+    };
+
+    docClient.update(params, (err, data) => {
+        if (err) {
+            console.error('Unable to update item. Error:', JSON.stringify(err, null, 2));
+        } else {
+            console.log('UpdateItem succeeded:', JSON.stringify(data, null, 2));
+        }
+    })
 })
 
 app.post('/profile/boardData/count', (req, res) => {

@@ -16,7 +16,7 @@ function Main() {
     const [selectUserEmailData, ] = useRecoilState<User>(user);
 
     useEffect(() => {
-        axios.get("http://localhost:50000/errorBoardData/get")
+        axios.get("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData/get")
             .then((response) => {
                 setErrorBoardData(response.data);
             })

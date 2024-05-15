@@ -14,7 +14,7 @@ function ErrorBoard(props: any) {
             <div className="main-component">
                 {displayData.map((error: any, index: any) => (
                     <Card className="main-card">
-                        <Link to={`http://localhost:50000/detail?author=${error.author}&type=${error.errorTypeData}`} className="main-link-style">
+                        <Link to={`https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/detail?author=${error.author}&type=${error.errorTypeData}`} className="main-link-style">
                         <div key={index} className="main-card-component">
                             
                             <div className="main-card-board-datas">

@@ -3,6 +3,7 @@ import { ErrorBoard } from "../model/ErrorBoard";
 import { PageList } from "../model/PageList";
 import { User } from "../model/User";
 import SelectPlatform from "../model/SelectPlatForm";
+import { ThemeFlag } from "../model/ThemeFlag";
 
 export const errorBoard = atom<ErrorBoard>({
     key: "errorBoard",
@@ -30,6 +31,7 @@ export const user = atom<User>({
         nickname: "",
         position: "",
         errorhandler: "",
+        profile: ""
     }
 })
 
@@ -40,4 +42,9 @@ export const selectPlatform = atom<SelectPlatform>({
         web: "",
         devops: "",
     }
+})
+
+export const themeState = atom<ThemeFlag>({
+    key: "themeState",
+    default: ThemeFlag.light,
 })

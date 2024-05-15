@@ -12,7 +12,7 @@
         const [errorBoardData, setErrorBoardData] = useRecoilState<ErrorBoard>(errorBoard)
 
         useEffect(() => {
-            axios.post("http://localhost:50000/platformData")
+            axios.post("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/platformData")
                 .then(response => {
                     setPlatformData(response.data);
                 })

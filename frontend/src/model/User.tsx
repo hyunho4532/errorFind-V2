@@ -3,5 +3,6 @@ export interface User {
     email: string,
     nickname: string,
     position: string,
-    errorhandler: string
+    errorhandler: string,
+    profile: string,
 }
