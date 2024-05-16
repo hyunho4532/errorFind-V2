@@ -41,13 +41,13 @@ function SecondGroup() {
         
     }, []);
 
-    console.log(errorBoardData.selectedPlatformData);
+    console.log(errorBoardData.selectedPlatform);
 
 
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const errorTypeData = e.target.value;
 
-        setErrorBoardData ({ ...errorBoardData, errorTypeData: errorTypeData });
+        setErrorBoardData ({ ...errorBoardData, errorType: errorTypeData });
     }
 
     const SecondGroup = () => {
@@ -55,18 +55,18 @@ function SecondGroup() {
             <div className="error-write-board-component-second-group">
                 <h2 className="error-write-board-component-kind">2. 에러 종류를 선택해주세요 😏😏</h2>
                 <div className="selectBox">
-                    { errorBoardData.selectedPlatformData == '웹' ?
-                        <select name="fruits" className="select" value={errorBoardData.errorTypeData} onChange={handleSelectChange}>
+                    { errorBoardData.selectedPlatform == '웹' ?
+                        <select name="fruits" className="select" value={errorBoardData.errorType} onChange={handleSelectChange}>
                             { errorTypeDataFromWeb.map((value) => <option>{value}</option> )}
                         </select>
                     
-                    : errorBoardData.selectedPlatformData == '안드로이드' ?
-                        <select name="fruits" className="select" value={errorBoardData.errorTypeData} onChange={handleSelectChange}>
+                    : errorBoardData.selectedPlatform == '안드로이드' ?
+                        <select name="fruits" className="select" value={errorBoardData.errorType} onChange={handleSelectChange}>
                             { errorTypeDataFromAndroid.map((value) => <option>{value}</option>)}
                         </select>
 
-                    : errorBoardData.selectedPlatformData == 'DevOps' ?
-                        <select name="fruits" className="select" value={errorBoardData.errorTypeData} onChange={handleSelectChange}>
+                    : errorBoardData.selectedPlatform == 'DevOps' ?
+                        <select name="fruits" className="select" value={errorBoardData.errorType} onChange={handleSelectChange}>
                             { errorTypeDataFromDevOps.map((value) => <option>{value}</option>)}
                         </select>
                     : <p></p>

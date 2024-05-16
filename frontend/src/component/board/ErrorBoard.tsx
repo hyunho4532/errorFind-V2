@@ -14,21 +14,25 @@ function ErrorBoard(props: any) {
             <div className="main-component">
                 {displayData.map((error: any, index: any) => (
                     <Card className="main-card">
-                        <Link to={`https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/detail?author=${error.author}&type=${error.errorTypeData}`} className="main-link-style">
+                        <Link to={`https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/detail?author=${error.author}&type=${error.errorType}`} className="main-link-style">
                         <div key={index} className="main-card-component">
                             
                             <div className="main-card-board-datas">
-                                <p className="main-type-text">{error.errorTypeData}</p>
+                                <p className="main-type-text">{error.errorType}</p>
                                 
-                                {error.errorFileData.length >= 13 ? (
-                                    <p className="main-content-text">{`에러 내용: ${error.errorFileData.substring(0, 32)}...`}</p>
+                                {error.errorFile.length >= 13 ? (
+                                    <p className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
                                 ) : (
-                                    <p className="main-content-text">{`에러 내용: ${error.errorFileData}`}</p>
+                                    <p className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
                                 )}
                                 
                                 <div className="main-card-board-data">
                                     <p className="main-author-text">{error.author}</p>
-                                    <p className="main-formatted-date-text">{error.formattedDateData}</p>
+                                    <img className="main-profile" src={error.profile} width="50px" height="50px" />
+                                </div>
+
+                                <div>
+                                    <p className="main-formatted-date-text">{error.formattedDate}</p>
                                 </div>
                             </div>
                         </div>

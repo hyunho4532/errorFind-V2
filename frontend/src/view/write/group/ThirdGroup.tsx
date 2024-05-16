@@ -16,7 +16,7 @@ function ThirdGroup() {
             reader.onload = () => {
                 const errorFileData = reader.result as string;
 
-                setErrorBoardData({ ...errorBoardData, errorFileData: errorFileData });
+                setErrorBoardData({ ...errorBoardData, errorFile: errorFileData });
             }
 
             reader.readAsText(file!);

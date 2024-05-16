@@ -1,7 +1,8 @@
 export interface ErrorBoard {
     authuid: string,
-    selectedPlatformData: string;
-    errorTypeData: string;
-    errorFileData: string;
-    errorSituationData: string
+    selectedPlatform: string;
+    errorType: string;
+    errorFile: string;
+    errorSituation: string;
+    profile: string;
 }

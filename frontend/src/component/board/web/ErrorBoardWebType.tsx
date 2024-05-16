@@ -24,8 +24,8 @@ function ErrorBoardWebType() {
             { errorBoardWebTypeData.map((error: any, index: any) => (
                 <Card className="main-component-web-card">
                     <div key={index}>
-                        <p>{error.errorTypeData}</p>
-                        <p>{error.formattedDateData}</p>
+                        <p>{error.errorType}</p>
+                        <p>{error.formattedDate}</p>
                     </div>
                 </Card>
             ))}
