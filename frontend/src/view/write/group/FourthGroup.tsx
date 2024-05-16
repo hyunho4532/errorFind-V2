@@ -15,7 +15,7 @@ function FourthGroup() {
 
             const newInputSituationData: string = e.target.value;
 
-            setErrorBoardData({ ...errorBoardData, errorSituationData: newInputSituationData });
+            setErrorBoardData({ ...errorBoardData, errorSituation: newInputSituationData });
 
             console.log(errorBoardData);
         }

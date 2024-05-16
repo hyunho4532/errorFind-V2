@@ -5,6 +5,7 @@ import { errorBoard } from '../../recoil/Atom'
 import axios from 'axios';
 import { useState } from 'react'
 import { Button, Modal, Typography } from '@mui/material'
+import uuid from 'react-uuid';
 
 function ErrorInsertButton() {
 
@@ -15,19 +16,23 @@ function ErrorInsertButton() {
     const user: any = localStorage.getItem('user');
 
     const auth = JSON.parse(authUid);
-    const userAuthor = JSON.parse(user);
+    const authFromJson = JSON.parse(user);
+
+    const randomUid = uuid();
 
     const date = new Date();
     const formattedDateData = date.toLocaleDateString('ko-KR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
     const data = {
-        id: auth.authuid,
-        author: userAuthor.userData.nickname,
-        selectedPlatformData: errorBoardData.selectedPlatformData,
-        errorTypeData: errorBoardData.errorTypeData,
-        errorFileData: errorBoardData.errorFileData,
-        errorSituationData: errorBoardData.errorSituationData,
-        formattedDateData: formattedDateData,
+        id: randomUid,
+        authuid: auth.authuid,
+        author: authFromJson.userData.nickname,
+        selectedPlatform: errorBoardData.selectedPlatform,
+        errorType: errorBoardData.errorType,
+        errorFile: errorBoardData.errorFile,
+        errorSituation: errorBoardData.errorSituation,
+        profile: authFromJson.userData.profile,
+        formattedDate: formattedDateData,
     };
 
     const errorInsertDialog = () => {
@@ -35,7 +40,7 @@ function ErrorInsertButton() {
     }
 
     const errorInsertButton= () => {
-        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData', data)
+        axios.post('http://localhost:50000/errorBoardData', data)
             .then(response => {
                 console.log('응답 받음:', response.data);
             })

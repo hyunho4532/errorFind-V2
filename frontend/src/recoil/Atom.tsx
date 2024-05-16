@@ -9,10 +9,11 @@ export const errorBoard = atom<ErrorBoard>({
     key: "errorBoard",
     default: {
         authuid: "",
-        selectedPlatformData: "",
-        errorTypeData: "",
-        errorFileData: "",
-        errorSituationData: ""
+        selectedPlatform: "",
+        errorType: "",
+        errorFile: "",
+        errorSituation: "",
+        profile: ""
     }
 });
 

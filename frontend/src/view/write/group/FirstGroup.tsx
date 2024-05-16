@@ -25,7 +25,7 @@
         const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
             const newSelectedPlatformData: string = e.target.value;
 
-            setErrorBoardData({ ...errorBoardData, selectedPlatformData: newSelectedPlatformData });
+            setErrorBoardData({ ...errorBoardData, selectedPlatform: newSelectedPlatformData });
         }
 
         const FirstGroup = () => {
@@ -33,7 +33,7 @@
                 <div className="error-write-board-component-first-group">
                     <h2 className="error-write-board-component-where-title">1. 에러가 어디에서 발생했나요? 🤔🤔</h2>
                     <div className="selectBox">
-                        <select name="fruits" className="select" value={errorBoardData.selectedPlatformData} onChange={handleSelectChange}>
+                        <select name="fruits" className="select" value={errorBoardData.selectedPlatform} onChange={handleSelectChange}>
                             { platformData.map((value) => <option>{value}</option> ) }
                             
                         </select>
