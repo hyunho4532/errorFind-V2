@@ -173,8 +173,10 @@ app.get('/errorHelpingData/get', (req, res) => {
 app.get('/detail', (req, res) => {
     const author = req.query.author;
     const type = req.query.type;
+    const profile = req.query.profile;
+    const date = req.query.date;
 
-    res.redirect(`http://localhost:5173/error/detail?author=${author}&type=${type}`);
+    res.redirect(`http://localhost:5173/error/detail?author=${author}&type=${type}&profile=${profile}&date=${date}`);
 });
 
 app.get('/errorBoardData/get/web', (req, res) => {
