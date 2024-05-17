@@ -14,7 +14,7 @@ function ErrorBoard(props: any) {
             <div className="main-component">
                 {displayData.map((error: any, index: any) => (
                     <Card className="main-card">
-                        <Link to={`http://localhost:50000/detail?author=${error.author}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}`} className="main-link-style">
+                        <Link to={`http://localhost:50000/detail?author=${error.author}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">
                         <div key={index} className="main-card-component">
                             
                             <div className="main-card-board-datas">
