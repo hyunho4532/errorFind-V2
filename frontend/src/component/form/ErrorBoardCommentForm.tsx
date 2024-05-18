@@ -1,14 +1,24 @@
 import React from "react";
 import './scss/ErrorBoardCommendForm.scss'
 import ErrorBoardCommentState from "../../state/ErrorBoardCommentState";
+import ErrorBoardCommentProps from "./props/ErrorBoardCommentProps";
+import axios from "axios";
 
-class ErrorBoardCommentForm extends React.Component<{}, ErrorBoardCommentState> {
+class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, ErrorBoardCommentState> {
 
-    constructor(props: any) {
+    user = localStorage.getItem('user');
+    userFromJson = JSON.parse(this.user!);
+
+    constructor(props: ErrorBoardCommentProps) {
         super(props)
         
         this.state = {
-            comment: ''
+            authid: props.authuid,
+            comment: '', 
+            couid: this.userFromJson.userData.authuid,
+            conickname: this.userFromJson.userData.nickname,
+            like: 0,
+            unlike: 0
         }
 
         this.commentInsert = this.commentInsert.bind(this);
@@ -19,7 +29,13 @@ class ErrorBoardCommentForm extends React.Component<{}, ErrorBoardCommentState> 
     }
 
     commentInsert() {
-        console.log(this.state.comment);
+        axios.post('http://localhost:50000/commentData', this.state) 
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            }) 
     }
 
     render(): React.ReactNode {

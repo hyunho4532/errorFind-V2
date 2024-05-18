@@ -7,6 +7,7 @@ function ErrorBoardDetail() {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const author = searchParams.get('author');
+    const uid = searchParams.get('uid');
     const type = searchParams.get('type');
     const profile = searchParams.get('profile');
     const date = searchParams.get('date');
@@ -47,7 +48,7 @@ function ErrorBoardDetail() {
                 </section>
             </div>
 
-            <ErrorBoardCommentForm />
+            <ErrorBoardCommentForm authuid={uid!} />
 
         </article>
     )

@@ -154,6 +154,25 @@ app.post('/errorHelpingData', (req, res) => {
             res.json(body);
         }
     })
+}) 
+
+app.post('/commentData', (req, res) => {
+    const body = req.body;
+
+    const params = {
+        TableName: 'Comment',
+        Item: body
+    }
+
+    docClient.put(params, (err, data) => {
+        if (err) {
+            console.error('Unable to add item. Error JSON:', JSON.stringify(err, null, 2));
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            console.log('Added Item:', JSON.stringify(data, null, 2));
+            res.json(body);
+        }
+    })
 })
 
 app.get('/errorHelpingData/get', (req, res) => {
@@ -170,8 +189,23 @@ app.get('/errorHelpingData/get', (req, res) => {
     });
 })
 
+app.get('/commentData/get', (req, res) => {
+    const parmas = {
+        TableName: 'Comment',
+    };
+    
+    docClient.scan(params, (err, data) => {
+        if (err) {
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            res.json(data.Items);
+        }
+    });
+})
+
 app.get('/detail', (req, res) => {
     const author = req.query.author;
+    const uid = req.query.uid;
     const type = req.query.type;
     const profile = req.query.profile;
     const content = req.query.content;
@@ -179,7 +213,7 @@ app.get('/detail', (req, res) => {
     const date = req.query.date;
 
 
-    res.redirect(`http://localhost:5173/error/detail?author=${author}&type=${type}&profile=${profile}&date=${date}&content=${content}&situation=${situation}`);
+    res.redirect(`http://localhost:5173/error/detail?author=${author}&uid=${uid}&type=${type}&profile=${profile}&date=${date}&content=${content}&situation=${situation}`);
 });
 
 app.get('/errorBoardData/get/web', (req, res) => {
