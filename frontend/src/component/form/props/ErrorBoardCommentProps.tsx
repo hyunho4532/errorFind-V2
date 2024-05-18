@@ -1,5 +1,5 @@
 interface ErrorBoardCommentProps {
-    authuid: string
+    authuid: string | null
 }
 
 export default ErrorBoardCommentProps

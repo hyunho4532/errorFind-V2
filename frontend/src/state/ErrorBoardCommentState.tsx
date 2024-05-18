@@ -1,7 +1,7 @@
 interface ErrorBoardCommentState {
     
     // 에러 게시 글 올린 사람의 uid
-    authid: string
+    authid: string | null
 
     // 댓글 내용
     comment: string

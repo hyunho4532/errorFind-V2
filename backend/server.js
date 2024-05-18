@@ -190,7 +190,7 @@ app.get('/errorHelpingData/get', (req, res) => {
 })
 
 app.get('/commentData/get', (req, res) => {
-    const parmas = {
+    const params = {
         TableName: 'Comment',
     };
     
