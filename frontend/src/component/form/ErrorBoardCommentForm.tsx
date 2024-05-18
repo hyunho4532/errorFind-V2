@@ -3,6 +3,7 @@ import './scss/ErrorBoardCommendForm.scss'
 import ErrorBoardCommentState from "../../state/ErrorBoardCommentState";
 import ErrorBoardCommentProps from "./props/ErrorBoardCommentProps";
 import axios from "axios";
+import uuid from "react-uuid";
 
 class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, ErrorBoardCommentState> {
 
@@ -13,6 +14,7 @@ class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, Erro
         super(props)
         
         this.state = {
+            id: uuid(),
             authid: props.authuid,
             comment: '', 
             couid: this.userFromJson.userData.authuid,

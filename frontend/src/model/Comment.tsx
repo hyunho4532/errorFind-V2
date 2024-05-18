@@ -1,4 +1,5 @@
 interface CommentData {
+    id: string;
     authid: string;
     comment: string;
     conickname: string;

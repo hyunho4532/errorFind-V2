@@ -175,7 +175,8 @@ app.post('/commentData', (req, res) => {
     })
 })
 
-app.get('/errorHelpingData/get', (req, res) => {
+app.post('/errorHelpingData/get', (req, res) => {
+    
     const params = {
         TableName: 'HELPING',
     };
@@ -189,7 +190,8 @@ app.get('/errorHelpingData/get', (req, res) => {
     });
 })
 
-app.get('/commentData/get', (req, res) => {
+app.post('/commentData/get', (req, res) => {
+
     const params = {
         TableName: 'Comment',
     };

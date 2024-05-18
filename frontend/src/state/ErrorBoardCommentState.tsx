@@ -1,4 +1,6 @@
 interface ErrorBoardCommentState {
+
+    id: string | null
     
     // 에러 게시 글 올린 사람의 uid
     authid: string | null

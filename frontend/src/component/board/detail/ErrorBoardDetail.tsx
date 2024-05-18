@@ -3,21 +3,32 @@ import React from "react";
 import ErrorBoardDetailState from "../../../state/ErrorBoardDetailState";
 import ErrorBoardCommentForm from "../../form/ErrorBoardCommentForm";
 import axios from 'axios';
+import ErrorBoardCommentView from '../../../view/comment/ErrorBoardCommentView';
 
 class ErrorBoardDetail extends React.Component<{}, ErrorBoardDetailState> {
 
     constructor(props: any) {
         super(props);
 
+        const searchParams = new URLSearchParams(window.location.search);
+
         this.state = {
-            searchParams: new URLSearchParams(window.location.search),
-            commentData: []
+            searchParams: searchParams,
+            commentData: [],
+            uid: searchParams.get('uid'),
+            errorType: searchParams.get('type')
         }
+
+        console.log(this.state.commentData);
     }
 
     componentDidMount(): void {
-        axios.get('http://localhost:50000/commentData/get')
+        axios.post('http://localhost:50000/commentData/get', {
+            uid: this.state.uid,
+            type: this.state.errorType
+        })
             .then(response => {
+                console.log(response.data);
                 this.setState({ commentData: response.data });
             })
             .catch(error => {
@@ -64,6 +75,10 @@ class ErrorBoardDetail extends React.Component<{}, ErrorBoardDetailState> {
                 </div>
 
                 <ErrorBoardCommentForm authuid={searchParams.get('uid')} />
+
+                { this.state.uid === searchParams.get('uid') }
+                    ? <ErrorBoardCommentView commentData={this.state.commentData} />
+                    : <p></p>
 
             </article>
         )
