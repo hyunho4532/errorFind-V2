@@ -5,6 +5,9 @@ interface ErrorBoardCommentState {
     // 에러 게시 글 올린 사람의 uid
     authid: string | null
 
+    // 에러 종류
+    type: string | null
+
     // 댓글 내용
     comment: string
 

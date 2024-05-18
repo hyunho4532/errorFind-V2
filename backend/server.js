@@ -192,15 +192,20 @@ app.post('/errorHelpingData/get', (req, res) => {
 
 app.post('/commentData/get', (req, res) => {
 
+    console.log(req.body.uid);
+
     const params = {
-        TableName: 'Comment',
+        TableName: 'Comment'
     };
     
     docClient.scan(params, (err, data) => {
         if (err) {
             res.status(500).send('Error saving data to DynamoDB');
         } else {
-            res.json(data.Items);
+            const filteringCommentDataFromAuth = data.Items.filter(item => item.authid === req.body.uid);
+            const filteringCommentDataFromType = filteringCommentDataFromAuth.filter(item => item.type === req.body.type);
+
+            res.json(filteringCommentDataFromType);
         }
     });
 })

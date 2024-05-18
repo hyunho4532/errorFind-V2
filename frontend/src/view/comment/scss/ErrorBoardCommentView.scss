@@ -1,8 +1,15 @@
 .errorboard-component-view-main {
     margin-top: 350px;
 
+    .errorboard-comment {
+        text-align: left;
+        font-size: 26px;
+        font-weight: bold;
+        margin-top: 40px;
+    }
+
     .errorboard-comment-view {
-        margin-top: 60px;
+        margin-top: 30px;
 
         .errorboard-comment-nickname {
             text-align: left;
@@ -12,7 +19,7 @@
 
         .errorboard-comment-comment {
             text-align: left;
-            
+
         }
     }
 }

@@ -15,27 +15,27 @@ function ErrorBoard(props: any) {
                 {displayData.map((error: any, index: any) => (
                     <Card className="main-card">
                         <Link to={`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">
-                        <div key={index} className="main-card-component">
-                            
-                            <div className="main-card-board-datas">
-                                <p className="main-type-text">{error.errorType}</p>
+                            <div key={index} className="main-card-component">
                                 
-                                {error.errorFile.length >= 13 ? (
-                                    <p className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
-                                ) : (
-                                    <p className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
-                                )}
-                                
-                                <div className="main-card-board-data">
-                                    <p className="main-author-text">{error.author}</p>
-                                    <img className="main-profile" src={error.profile} width="50px" height="50px" />
-                                </div>
+                                <div className="main-card-board-datas">
+                                    <p className="main-type-text">{error.errorType}</p>
+                                    
+                                    {error.errorFile.length >= 13 ? (
+                                        <p className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
+                                    ) : (
+                                        <p className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
+                                    )}
+                                    
+                                    <div className="main-card-board-data">
+                                        <p className="main-author-text">{error.author}</p>
+                                        <img className="main-profile" src={error.profile} width="50px" height="50px" />
+                                    </div>
 
-                                <div>
-                                    <p className="main-formatted-date-text">{error.formattedDate}</p>
+                                    <div>
+                                        <p className="main-formatted-date-text">{error.formattedDate}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </Link>
                     </Card>
                 ))}

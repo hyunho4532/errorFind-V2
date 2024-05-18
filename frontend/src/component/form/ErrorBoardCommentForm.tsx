@@ -16,6 +16,7 @@ class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, Erro
         this.state = {
             id: uuid(),
             authid: props.authuid,
+            type: props.type,
             comment: '', 
             couid: this.userFromJson.userData.authuid,
             conickname: this.userFromJson.userData.nickname,

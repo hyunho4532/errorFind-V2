@@ -74,11 +74,13 @@ class ErrorBoardDetail extends React.Component<{}, ErrorBoardDetailState> {
                     </section>
                 </div>
 
-                <ErrorBoardCommentForm authuid={searchParams.get('uid')} />
+                <ErrorBoardCommentForm authuid={searchParams.get('uid')} type={searchParams.get('type')} />
 
-                { this.state.uid === searchParams.get('uid') }
+                { this.state.uid == searchParams.get('uid')                    
                     ? <ErrorBoardCommentView commentData={this.state.commentData} />
                     : <p></p>
+                }
+
 
             </article>
         )
