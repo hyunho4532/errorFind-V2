@@ -86,6 +86,30 @@ app.post('/errorBoardData', (req, res) => {
     });
 })
 
+app.post('/errorBoardData/delete', (req, res) => {
+    const body = req.body;
+
+    console.log(body.uid);
+
+    const params = {
+        TableName: 'errorBoard',
+        Key: {
+            errorFile: body.errorFile,
+            errorType: body.errorType,
+        }
+    };
+
+    docClient.delete(params, (err, data) => {
+        if (err) {
+            console.error('Unable to add item. Error JSON:', JSON.stringify(err, null, 2));
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            console.log('Added item:', JSON.stringify(data, null, 2));
+            res.json(body);
+        }
+    });
+})
+
 app.post('/userData', (req, res) => {
 
     const body = req.body;
@@ -281,7 +305,7 @@ app.get('/errorFind/avg/web', (req, res) => {
         if (err) {
             res.status(500).send('Error saving data to DynamoDB');
         } else {
-            const filteringSelectedPlatformAtWebData = data.Items.filter(item => item.selectedPlatformData === '웹').length;
+            const filteringSelectedPlatformAtWebData = data.Items.filter(item => item.selectedPlatform === '웹').length;
             console.log(filteringSelectedPlatformAtWebData);
             res.json(filteringSelectedPlatformAtWebData)
         }
