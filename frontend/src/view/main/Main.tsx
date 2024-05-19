@@ -13,7 +13,7 @@ function Main() {
     const [errorBoardData, setErrorBoardData] = useState([]);
     const [page, setPage] = useState(1);
 
-    const [selectUserEmailData, ] = useRecoilState<User>(user);
+    const [userData, setUserData] = useRecoilState<User>(user);
 
     useEffect(() => {
         axios.get("https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData/get")
@@ -24,14 +24,14 @@ function Main() {
                 console.error(error);
             });
         
-        console.log(selectUserEmailData);
+        console.log(userData);
 
-    }, [selectUserEmailData.email]);
+    }, [userData.email]);
 
     return (
         <>
 
-            <Header />
+            <Header userData={userData} setUserData={setUserData} />
 
             <ErrorBoard errorBoardData={errorBoardData} page={page} />
         

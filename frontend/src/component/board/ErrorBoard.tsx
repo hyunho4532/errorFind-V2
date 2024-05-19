@@ -56,14 +56,9 @@ function ErrorBoard(props: any) {
                                 <div className="main-card-board-datas">
                                     <div style={{ display: "flex" }}>
                                         <p className="main-type-text">{error.errorType}</p>
-                                        { userFromJson.userData.authuid == error.authuid 
-                                            ? <img onClick={(e) => {
+                                        <img onClick={(e) => {
                                                 deleteOnClick(error.authuid, error.errorType, error.errorFile, e)
                                             }} className="main-type-delete" src="../../../public/delete.svg"></img>
-                                            
-                                            : <img></img>
-                                        }
-                                        
                                     </div>
 
                                     <Link to={`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">

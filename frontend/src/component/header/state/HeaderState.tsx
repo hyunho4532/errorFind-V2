@@ -1,10 +1,11 @@
-import { User } from "../../../model/User"
-
 interface HeaderState {
-    modalIsOpen: boolean,
-    userModalIsOpen: boolean,
-    userProfileSelect: boolean,
-    
+    clientId: string;
+    modalIsOpen: boolean;
+    setModalIsOpen: (isOpen: boolean) => void;
+    userModalIsOpen: boolean;
+    setUserModalIsOpen: (isOpen: boolean) => void;
+    userProfileSelect: boolean;
+    setUserProfileSelect: boolean;
 }
 
-export default HeaderState
+export default HeaderState;

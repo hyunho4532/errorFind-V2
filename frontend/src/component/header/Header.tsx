@@ -1,69 +1,44 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import './Header.scss'
 import { Modal, Typography } from '@mui/material';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import { User } from '../../model/User';
-import { useRecoilState } from 'recoil';
-import { user } from '../../recoil/Atom';
 import userInfoInsert from '../../data/user/UserInfo';
 import { Link } from 'react-router-dom';
 import UserProfileCard from '../card/UserProfileCard';
-import HeaderState from './state/HeaderState';
-import { render } from 'react-dom';
+import { HeaderProps } from './props/HeaderProps';
 
-class Header extends React.Component<{}, HeaderState> {
+function Header(props: HeaderProps) {
 
-    userData = useRecoilState<User>(user)
-
-    constructor(props: any) {
-        super(props);
-
-        this.state = {
-            modalIsOpen: false,
-            userModalIsOpen: false,
-            userProfileSelect: false,
-        }
-    }
-
-    
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [userModalIsOpen, setUserModalIsOpen] = useState(false);
+    const [userProfileSelect, setUserProfileSelect] = useState(false);
 
     const storedEmail = localStorage.getItem('userEmail');
     const storedAuthUid = localStorage.getItem('authuid');
 
     const clientId = '975201873312-kkmb6gv4usaond240kaecujn4vmqd695.apps.googleusercontent.com'
 
-    const loginClick = () => {
-        
-    }
-
-    const modalClose = () => {
-        setModalIsOpen(false);
-    }
-
-    const userModalClose = () => {
-        setUserModalIsOpen(false);
-    }
-
     const errorInsertClick = () => {
-        if (userData.email === '') {
+        if (props.userData.email === '') {
             alert('로그인을 먼저 진행해주세요.');
         } else {
             location.href = "/error/write";
         }
     }
 
-    /**
-    const nicknameChange = (e: any) => {
-        setUserData({ ...userData, nickname: e.target.value });
-    }
+    const statusChange = (type: string, e: any) => {
+        if (type == 'nickname') {
+            props.setUserData({ ...props.userData, nickname: e.target.value });
+        }
+        
+        else if (type == 'position') {
+            props.setUserData({ ...props.userData, position: e.target.value });
+        }
 
-    const positionChange = (e: any) => {
-        setUserData({ ...userData, position: e.target.value });
-    }
-
-    const errorHandlerCahnge = (e: any) => {
-        setUserData({ ...userData, errorhandler: e.target.value });
+        else if (type == 'errorhandler') {
+            props.setUserData({ ...props.userData, errorhandler: e.target.value })
+        }
     }
 
     const profileSelect = (userProfileSelect: boolean) => {
@@ -71,47 +46,40 @@ class Header extends React.Component<{}, HeaderState> {
     }
 
     useEffect(() => {
-        
-        console.log(storedEmail);
-        console.log(storedAuthUid);
     
         if (storedEmail !== null) {
             const userEmail = JSON.parse(storedEmail);
             const userAuthUid = JSON.parse(storedAuthUid!);
 
-            setUserData(prevUserData => ({ ...prevUserData, email: userEmail.email }));
-            setUserData(prevUserData => ({ ...prevUserData, authuid: userAuthUid.authuid }));
-
-            console.log(userEmail.email);
+            props.setUserData({ ...props.userData, email: userEmail.email, authuid: userAuthUid.authuid });
         }
     
     }, [storedEmail]);
-    **/ 
 
-    render(): React.ReactNode {
+    return (
         <>
             <div className="header-main">
                 <img width={140} height={60} className="header-logo" src="../../../public/errorfind_logo.jpg" />
                 <nav style={{ display: 'flex' }}>
-                    <Link to="/error/average" style={{ width: '96px', paddingLeft: '24px' }}>
+                    <Link to="/error/average" style={{ width: '90px', paddingLeft: '24px' }}>
                         <div className="header-nav-link">
-                            <p>에러 통계 📚</p>
+                            <p>에러 통계</p>
                         </div>
                     </Link>
 
-                    <Link to="/error/helping" style={{  width: '96px', paddingLeft: '50px', paddingRight: '60px' }}>
+                    <Link to="/error/helping" style={{  width: '90px', paddingLeft: '50px', paddingRight: '60px' }}>
                         <div className="header-nav-link">
-                            <p>헬핑! 💬</p>
+                            <p>헬핑!</p>
                         </div>
                     </Link>
                 </nav>
 
                 <div className="header-main-title">
-                    <p className="header-main-email" onClick={() => profileSelect(userProfileSelect)}>{userData.email}</p>
+                    <p className="header-main-email" onClick={() => profileSelect(userProfileSelect)}>{props.userData.email}</p>
 
                     {
-                        userData.email === '' 
-                        ? <button className="header-login" onClick={loginClick}>로그인</button>
+                        props.userData.email === '' 
+                        ? <button className="header-login" onClick={() => setModalIsOpen(true)}>로그인</button>
                         : ''
                     }
 
@@ -120,13 +88,13 @@ class Header extends React.Component<{}, HeaderState> {
                 </div>
             </div>
 
-            { this.state.userProfileSelect ? 
+            { userProfileSelect ? 
                 <UserProfileCard /> : <p></p>
             }        
 
             <Modal
                 open={modalIsOpen}
-                onClose={modalClose}>
+                onClose={() => setModalIsOpen(false)}>
 
                 <div className="modal">
                     <Typography className="modal-login-title">ErrorFind를 이용해주셔서 감사합니다.</Typography>
@@ -149,9 +117,7 @@ class Header extends React.Component<{}, HeaderState> {
                                             localStorage.setItem('authuid', JSON.stringify({ authuid }));
                                             localStorage.setItem('profile', JSON.stringify({ profile }));
                                             
-                                            setUserData({ ...userData, authuid: authuid });
-                                            setUserData({ ...userData, email: email });
-                                            setUserData({ ...userData, profile: profile });
+                                            props.setUserData({ ...props.userData, authuid: authuid, email: email, profile: profile });
                                             
                                             setModalIsOpen(false);
                                             setUserModalIsOpen(true);
@@ -179,7 +145,7 @@ class Header extends React.Component<{}, HeaderState> {
 
             <Modal
                 open={userModalIsOpen}
-                onClose={userModalClose}>
+                onClose={() => setUserModalIsOpen(false)}>
 
 
                 <div className="modal">
@@ -190,20 +156,20 @@ class Header extends React.Component<{}, HeaderState> {
                         <div style={{ "display": "flex" }}>
                             <p className="modal-login-nickname-field">닉네임</p>
                             <div className="modal-login-nickname-input">
-                                <input className="modal-login-nickname-form" onChange={nicknameChange} type='text'></input>
+                                <input className="modal-login-nickname-form" onChange={(status: any) => statusChange('nickname', status)} type='text'></input>
                             </div>
                         </div>
 
                         <div style={{ "display": "flex" }}>
                             <p className="modal-login-position-field">포지션</p>
                             <div className="modal-login-position-input">
-                                <input className="modal-login-position-form" onChange={positionChange} type='text' placeholder='포지션은 어디신가요? (ex: 안드로이드, 웹)'></input>
+                                <input className="modal-login-position-form" onChange={(status: any) => statusChange('position', status)} type='text' placeholder='포지션은 어디신가요? (ex: 안드로이드, 웹)'></input>
                             </div>
                         </div>
 
                         <div style={{ "display": "flex" }}>
                             <p className="modal-login-error-field">저는 에러가 났을 때</p>
-                            <select className="modal-login-error-select" onChange={errorHandlerCahnge} style={{ "width": "100px", "height": "30px", "marginTop": "60px", "marginLeft": "16px" }}>
+                            <select className="modal-login-error-select" onChange={(status: any) => statusChange('errorhandler', status)} style={{ "width": "100px", "height": "30px", "marginTop": "60px", "marginLeft": "16px" }}>
                                 <option>ChatGPT</option>
                                 <option>블로그</option>
                                 <option>구글링</option>
@@ -212,14 +178,14 @@ class Header extends React.Component<{}, HeaderState> {
                         </div>
                     </div>
 
-                    <button className="modal-login-button" onClick={() => userInfoInsert(userData)}>
+                    <button className="modal-login-button" onClick={() => userInfoInsert(props.userData)}>
                         정보 입력 완료! 
                     </button>
                 </div>
 
             </Modal>
         </>
-    }
+    )
 }
 
 export default Header
