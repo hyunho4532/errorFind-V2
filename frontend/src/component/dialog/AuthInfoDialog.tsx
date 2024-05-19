@@ -57,7 +57,6 @@ function AuthInfoDialog(props: AuthInfoDialogProps) {
                     정보 입력 완료! 
                 </button>
             </div>
-
         </Modal>
     )
 }
