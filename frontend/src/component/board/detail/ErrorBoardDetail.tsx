@@ -16,7 +16,8 @@ class ErrorBoardDetail extends React.Component<{}, ErrorBoardDetailState> {
             searchParams: searchParams,
             commentData: [],
             uid: searchParams.get('uid'),
-            errorType: searchParams.get('type')
+            errorType: searchParams.get('type'),
+            commentCount: 0
         }
 
         console.log(this.state.commentData);
@@ -28,8 +29,7 @@ class ErrorBoardDetail extends React.Component<{}, ErrorBoardDetailState> {
             type: this.state.errorType
         })
             .then(response => {
-                console.log(response.data);
-                this.setState({ commentData: response.data });
+                this.setState({ commentData: response.data, commentCount: response.data.length });
             })
             .catch(error => {
                 console.error(error);
@@ -75,12 +75,8 @@ class ErrorBoardDetail extends React.Component<{}, ErrorBoardDetailState> {
                 </div>
 
                 <ErrorBoardCommentForm authuid={searchParams.get('uid')} type={searchParams.get('type')} />
-
-                { this.state.uid == searchParams.get('uid')                    
-                    ? <ErrorBoardCommentView commentData={this.state.commentData} />
-                    : <p></p>
-                }
-
+              
+                <ErrorBoardCommentView commentData={this.state.commentData} commentCount={this.state.commentCount} />
 
             </article>
         )

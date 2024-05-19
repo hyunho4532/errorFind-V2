@@ -22,6 +22,9 @@ interface ErrorBoardCommentState {
 
     // 싫어요 표시
     unlike: number
+
+    // 현재 날짜
+    todayDate: string,
 }
 
 export default ErrorBoardCommentState

@@ -4,11 +4,16 @@ import ErrorBoardCommentState from "../../state/ErrorBoardCommentState";
 import ErrorBoardCommentProps from "./props/ErrorBoardCommentProps";
 import axios from "axios";
 import uuid from "react-uuid";
+import formatDate from "../../util/FormatDate";
 
 class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, ErrorBoardCommentState> {
 
     user = localStorage.getItem('user');
     userFromJson = JSON.parse(this.user!);
+
+    date = new Date();
+
+    todayDate = formatDate(this.date!);
 
     constructor(props: ErrorBoardCommentProps) {
         super(props)
@@ -21,7 +26,8 @@ class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, Erro
             couid: this.userFromJson.userData.authuid,
             conickname: this.userFromJson.userData.nickname,
             like: 0,
-            unlike: 0
+            unlike: 0,
+            todayDate: this.todayDate
         }
 
         this.commentInsert = this.commentInsert.bind(this);

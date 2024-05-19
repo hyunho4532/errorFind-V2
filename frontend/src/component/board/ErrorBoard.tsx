@@ -8,6 +8,10 @@ function ErrorBoard(props: any) {
     const endIndex = startIndex + itemsPerPage;
     const displayData = props.errorBoardData.slice(startIndex, endIndex);
 
+    const deleteOnClick = (e: any) => {
+        alert(e);
+    }
+
     return (
         <>
             <h2 className="main-component-title">최근에 등록한 에러 목록들 🥇</h2>
@@ -18,7 +22,13 @@ function ErrorBoard(props: any) {
                             <div key={index} className="main-card-component">
                                 
                                 <div className="main-card-board-datas">
-                                    <p className="main-type-text">{error.errorType}</p>
+                                    <div style={{ display: "flex", justifyContent: 'space-between' }}>
+                                        <p className="main-type-text">{error.errorType}</p>
+                                        <img onClick={(e) => {
+                                            e.preventDefault();
+                                            deleteOnClick(e);
+                                        }} className="main-type-delete" src="../../../public/delete.svg" width={20} height={20}></img>
+                                    </div>
                                     
                                     {error.errorFile.length >= 13 ? (
                                         <p className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>

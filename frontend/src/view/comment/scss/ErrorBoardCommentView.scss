@@ -11,15 +11,24 @@
     .errorboard-comment-view {
         margin-top: 30px;
 
-        .errorboard-comment-nickname {
-            text-align: left;
-            font-size: 20px;
-            font-weight: bold;
+        .errorboard-comment-info {
+            display: flex;
+
+            .errorboard-comment-info-data {
+                text-align: left;
+                font-size: 20px;
+                font-weight: bold;
+            }
         }
+
+
 
         .errorboard-comment-comment {
             text-align: left;
+        }
 
+        .errorboard-comment-unlike {
+            margin-left: 24px;
         }
     }
 }

@@ -1,4 +1,4 @@
-interface CommentData {
+interface Comment {
     id: string;
     authid: string;
     comment: string;
@@ -8,4 +8,4 @@ interface CommentData {
     unlike: number;
 }
 
-export default CommentData
+export default Comment

@@ -1,5 +1,8 @@
+import CommentData from "../../../model/Comment"
+
 interface ErrorBoardCommentViewProps {
-    commentData: Comment[]
+    commentData: CommentData[],
+    commentCount: number | null
 }
 
 export default ErrorBoardCommentViewProps
