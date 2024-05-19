@@ -1,11 +1,14 @@
-function formatDate(date: Date, format: string, locale: string) {
-    const formattedDate = new Date(date).toLocaleDateString(locale, {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    }).replace(/\//g, '-'); // '/' -> '-' 로 변경
-    console.log('Formatted Date:', formattedDate);
-    return formattedDate;
+function formatDate(date: Date) : string {
+
+    let formattedMonth = '';
+
+    if (date.getMonth() + 1 < 10) {
+        formattedMonth = '0' + (date.getMonth() + 1);
+    } else {
+        formattedMonth = '' + (date.getMonth() + 1);
+    }
+
+    return date.getFullYear() + '-' + formattedMonth + '-' + date.getDate();
 }
 
 export default formatDate

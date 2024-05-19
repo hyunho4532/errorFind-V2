@@ -1,0 +1,34 @@
+.errorboard-component-view-main {
+    margin-top: 350px;
+
+    .errorboard-comment {
+        text-align: left;
+        font-size: 26px;
+        font-weight: bold;
+        margin-top: 40px;
+    }
+
+    .errorboard-comment-view {
+        margin-top: 30px;
+
+        .errorboard-comment-info {
+            display: flex;
+
+            .errorboard-comment-info-data {
+                text-align: left;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+
+
+
+        .errorboard-comment-comment {
+            text-align: left;
+        }
+
+        .errorboard-comment-unlike {
+            margin-left: 24px;
+        }
+    }
+}

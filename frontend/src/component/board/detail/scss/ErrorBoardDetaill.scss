@@ -1,4 +1,55 @@
-.erorr-board-detail {
+.error-board-detail {
     width: 620px;
-    text-align: left;
+    flex-direction: column;
+
+    .error-board-detail-auth-info {
+        display: flex;
+
+        .error-board-detail-author {
+            font-size: 16sp;
+            font-weight: bold;
+        }
+
+        .error-board-detail-profile {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+    }
+
+    .error-board-detail-date {
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .error-board-detail-error {
+        margin-top: 40px;
+
+        .error-board-detail-error-title {
+            text-align: left;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .error-board-detail-error-text {
+            font-size: 16px;
+            text-align: start;
+        }
+    }
+
+    .error-board-detail-content {
+        margin-top: 80px;
+
+        .error-board-detail-content-title {
+            text-align: left;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .error-board-detail-content-text {
+            text-align: start;
+            font-size: 16px;
+        }
+    }
 }

@@ -61,14 +61,15 @@ function ErrorInsertButton() {
 
             <Modal
                 open={modalIsOpen}
-                onClose={handleClose}
-            >
+                onClose={handleClose}>
+
                 <div className="modal">
                     <Typography className='modal-error-insert'>에러 등록하기!</Typography>
                     <Typography className='modal-confirm-registration'>정말 등록하시겠습니까?</Typography>
                     <Button className='modal-error-check' onClick={errorInsertButton}>확인</Button>
                     <Button className='modal-error-cancel' onClick={handleClose}>닫기</Button>
                 </div>
+                
             </Modal>
             
         </>

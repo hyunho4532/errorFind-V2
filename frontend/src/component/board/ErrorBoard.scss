@@ -16,11 +16,18 @@
 
     .main-card-board-datas {
         padding: 10px;
-    }
 
-    .main-type-text {
-        margin-top: 6px;
-        margin-left: 6px;
+        .main-type-text {
+            margin-top: 6px;
+            margin-left: 6px;
+        }
+    
+        .main-type-delete {
+            width: 30px;
+            height: 20px;
+            margin-top: 6px;
+            margin-left: 16px;
+        }
     }
 
     .main-author-text {
@@ -29,7 +36,8 @@
     }
 
     .main-formatted-date-text {
-        text-align: left;
+        margin-top: 24px;
+        float: left;
     }
 }
 
@@ -47,7 +55,6 @@
         border: 3px solid rgb(221, 221, 221);
 
         .main-link-style {
-            color: inherit;
             text-decoration: none;
         }
 
