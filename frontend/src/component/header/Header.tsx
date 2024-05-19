@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import './Header.scss'
 import { Modal, Typography } from '@mui/material';
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
 import userInfoInsert from '../../data/user/UserInfo';
 import { Link } from 'react-router-dom';
 import UserProfileCard from '../card/UserProfileCard';
 import { HeaderProps } from './props/HeaderProps';
+import LoginDialog from '../dialog/LoginDialog';
 
 function Header(props: HeaderProps) {
 
@@ -17,7 +16,6 @@ function Header(props: HeaderProps) {
     const storedEmail = localStorage.getItem('userEmail');
     const storedAuthUid = localStorage.getItem('authuid');
 
-    const clientId = '975201873312-kkmb6gv4usaond240kaecujn4vmqd695.apps.googleusercontent.com'
 
     const errorInsertClick = () => {
         if (props.userData.email === '') {
@@ -90,58 +88,14 @@ function Header(props: HeaderProps) {
 
             { userProfileSelect ? 
                 <UserProfileCard /> : <p></p>
-            }        
+            }
 
-            <Modal
-                open={modalIsOpen}
-                onClose={() => setModalIsOpen(false)}>
-
-                <div className="modal">
-                    <Typography className="modal-login-title">ErrorFind를 이용해주셔서 감사합니다.</Typography>
-                    <Typography className="modal-login-errorfind-platform">erorrFind는 다른 사람들에게 에러를 공유해 서로 공유하면서 해결하는 플랫폼을 지원하겠습니다!</Typography>
-                    <Typography className="modal-login-options-prompt">아래 카카오, 구글 로그인 중 원하는 로그인을 선택해주세요!!</Typography>
-
-                    <div className="modal-login-kind">
-                        <div>
-                            <GoogleOAuthProvider clientId={clientId}>
-                                <GoogleLogin
-                                    onSuccess={(res) => {
-                                        if (res.credential != undefined) {
-                                            const credentialResponseDecoded: any = jwtDecode(res.credential);
-
-                                            const email = credentialResponseDecoded.email;
-                                            const authuid = credentialResponseDecoded.jti;
-                                            const profile = credentialResponseDecoded.picture;
-                                            
-                                            localStorage.setItem('userEmail', JSON.stringify({ email }));
-                                            localStorage.setItem('authuid', JSON.stringify({ authuid }));
-                                            localStorage.setItem('profile', JSON.stringify({ profile }));
-                                            
-                                            props.setUserData({ ...props.userData, authuid: authuid, email: email, profile: profile });
-                                            
-                                            setModalIsOpen(false);
-                                            setUserModalIsOpen(true);
-                                        }
-                                    }}
-                                    onError={() => {
-                                        console.error('에러'); 
-                                    }} 
-                                />
-                            </GoogleOAuthProvider>
-                            
-                            <p className="modal-login-google-text">구글 로그인</p>
-                        </div>
-
-                        <div>
-                            <button>
-                                <img width={60} height={60} src="../../../public/kakao.jpg" />
-                            </button>
-
-                            <p className="modal-login-kakao-text">카카오 로그인</p>
-                        </div>
-                    </div>
-                </div>
-            </Modal>
+            <LoginDialog
+                userData={props.userData} 
+                setUserData={props.setUserData} 
+                modalIsOpen={modalIsOpen} 
+                setModalIsOpen={setModalIsOpen} 
+                setUserModalIsOpen={setUserModalIsOpen} />
 
             <Modal
                 open={userModalIsOpen}
