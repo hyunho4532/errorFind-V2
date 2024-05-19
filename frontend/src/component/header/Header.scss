@@ -1,14 +1,36 @@
+.header-main-func {
+    width: 90px;
+    padding-left: 20px;
+
+    .header-nav-link {
+        font-size: 16px;
+        cursor: pointer;
+    }
+}
+
 .header-main {
     position: fixed;
     top: 0;
-    width: 70%;
+    width: 90%;
     margin-top: 20px;
     display: flex;
 
-    .header-nav-link {
-        cursor: pointer;
+    .header-logo {
+        width: 140px;
+        height: 60px;
     }
 
+    .header-main-funcs {
+        display: flex;
+
+        .header-main-first-func {
+            @extend .header-main-func
+        }
+
+        .header-main-second-func {
+            @extend .header-main-func
+        }
+    }
 
     .header-main-title {
         display: flex;
