@@ -86,6 +86,24 @@ app.post('/errorBoardData', (req, res) => {
     });
 })
 
+app.post('/errorBoardData/detail/auth', (req, res) => {
+    const body = req.body;
+
+    const params = {
+        TableName: 'errorBoard',
+    }
+
+    docClient.scan(params, (err, data) => {
+        if (err) {
+            console.error('Unable to add item. Error JSON:', JSON.stringify(err, null, 2));
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            const filteringErrorBoardData = data.Items.filter(item => item.authuid === body.authuid);
+            res.json(filteringErrorBoardData);
+        }
+    });
+});
+
 app.post('/errorBoardData/delete', (req, res) => {
     const body = req.body;
 

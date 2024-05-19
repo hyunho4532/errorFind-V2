@@ -9,6 +9,8 @@ import { NewUser } from "../../../model/NewUser";
 function ErrorFindProfile() {
     const [themeIsNight, setThemeIsNight] = useState(false);
     const [userAuthBoardCount, setUserAuthBoardCount] = useState(0);
+    const [boardData, setBoardData] = useState([]);
+
     const newUser = new NewUser('', '', '', '', '');
 
     const userAuthUid = localStorage.getItem('user');
@@ -26,6 +28,16 @@ function ErrorFindProfile() {
             .catch(error => {
                 console.error(error);
             });
+
+        axios.post('http://localhost:50000/errorBoardData/detail/auth', {
+            authuid: userAuthFromJson.userData.authuid
+        })
+            .then(respose => {
+                setBoardData(respose.data);
+            })
+            .catch(error => {
+                console.error(error);
+            })
     });
 
     return (
@@ -49,6 +61,20 @@ function ErrorFindProfile() {
                     <p>0점</p> 
                 </div>
             </div>
+
+            <section className="errorfind-auth-section">
+                <p>내가 작성한  에러 게시글</p>
+
+                <div className="errorfind-auth-data">
+                    { boardData.map(( board: any, index: any ) => (
+                        <Card className="errorfind-auth-card">
+                            <p className="errorfind-auth-errortype">{ board.errorType }</p>
+                            <p className="errorfind-auth-platform">에러 발생: { board.selectedPlatform }</p>
+                            <p className="errorfind-auth-formatDate">{ board.formattedDate }</p>
+                        </Card>
+                    ))}
+                </div>
+            </section>
 
             <ProfileInputForm newUser={newUser} />
 
