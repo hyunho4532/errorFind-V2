@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
 import './Header.scss'
 import { Modal, Typography } from '@mui/material';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
@@ -9,14 +9,24 @@ import { user } from '../../recoil/Atom';
 import userInfoInsert from '../../data/user/UserInfo';
 import { Link } from 'react-router-dom';
 import UserProfileCard from '../card/UserProfileCard';
+import HeaderState from './state/HeaderState';
+import { render } from 'react-dom';
 
-function Header() {
+class Header extends React.Component<{}, HeaderState> {
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [userModalIsOpen, setUserModalIsOpen] = useState(false);
-    const [userProfileSelect, setUserProfileSelect] = useState(false);
+    userData = useRecoilState<User>(user)
 
-    const [userData, setUserData] = useRecoilState<User>(user)
+    constructor(props: any) {
+        super(props);
+
+        this.state = {
+            modalIsOpen: false,
+            userModalIsOpen: false,
+            userProfileSelect: false,
+        }
+    }
+
+    
 
     const storedEmail = localStorage.getItem('userEmail');
     const storedAuthUid = localStorage.getItem('authuid');
@@ -24,7 +34,7 @@ function Header() {
     const clientId = '975201873312-kkmb6gv4usaond240kaecujn4vmqd695.apps.googleusercontent.com'
 
     const loginClick = () => {
-        setModalIsOpen(true);
+        
     }
 
     const modalClose = () => {
@@ -43,6 +53,7 @@ function Header() {
         }
     }
 
+    /**
     const nicknameChange = (e: any) => {
         setUserData({ ...userData, nickname: e.target.value });
     }
@@ -75,8 +86,9 @@ function Header() {
         }
     
     }, [storedEmail]);
+    **/ 
 
-    return (
+    render(): React.ReactNode {
         <>
             <div className="header-main">
                 <img width={140} height={60} className="header-logo" src="../../../public/errorfind_logo.jpg" />
@@ -108,7 +120,7 @@ function Header() {
                 </div>
             </div>
 
-            { userProfileSelect ? 
+            { this.state.userProfileSelect ? 
                 <UserProfileCard /> : <p></p>
             }        
 
@@ -207,7 +219,7 @@ function Header() {
 
             </Modal>
         </>
-    )
+    }
 }
 
 export default Header
