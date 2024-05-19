@@ -81,15 +81,15 @@ function Header() {
             <div className="header-main">
                 <img width={140} height={60} className="header-logo" src="../../../public/errorfind_logo.jpg" />
                 <nav style={{ display: 'flex' }}>
-                    <Link to="/error/average" style={{ width: '90px', paddingLeft: '24px' }}>
+                    <Link to="/error/average" style={{ width: '96px', paddingLeft: '24px' }}>
                         <div className="header-nav-link">
-                            <p>에러 통계</p>
+                            <p>에러 통계 📚</p>
                         </div>
                     </Link>
 
-                    <Link to="/error/helping" style={{  width: '90px', paddingLeft: '50px', paddingRight: '60px' }}>
+                    <Link to="/error/helping" style={{  width: '96px', paddingLeft: '50px', paddingRight: '60px' }}>
                         <div className="header-nav-link">
-                            <p>헬핑!</p>
+                            <p>헬핑! 💬</p>
                         </div>
                     </Link>
                 </nav>

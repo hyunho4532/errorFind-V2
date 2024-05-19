@@ -1,11 +1,12 @@
 .header-main {
     position: fixed;
     top: 0;
-    width: 70%;
+    width: 90%;
     margin-top: 20px;
     display: flex;
 
     .header-nav-link {
+        font-size: 16px;
         cursor: pointer;
     }
 

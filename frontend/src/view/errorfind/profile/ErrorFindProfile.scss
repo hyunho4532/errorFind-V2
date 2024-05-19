@@ -1,5 +1,5 @@
 .errorfind-profile {
-    width: 90%;
+    width: 100%;
 
     .errorfind-profile-nickname {
         margin-top: 30px;
@@ -31,26 +31,35 @@
 
     .errorfind-auth-section {
         margin-top: 60px;
-        text-align: left;
-        font-size: 18px;
-        font-weight: bold;
+
+        .errorfind-auth-errorboard {
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
         .errorfind-auth-data {
+            width: 600px;
             display: flex;
+            overflow-x: scroll;
+            white-space: nowrap;
+            gap: 16px;
 
             .errorfind-auth-card {
-                width: 200px;
-                height: 120px;
-                margin-left: 24px;
+                flex: 0 0 auto;
+                width: 250px;
+                margin: 8px;
 
                 .errorfind-auth-errortype {
                     font-size: 12px;
                     padding-left: 8px;
+                    text-align: left;
                 }
 
                 .errorfind-auth-platform {
                     font-size: 12px;
                     padding-left: 8px;
+                    text-align: left;
                 }
 
                 .errorfind-auth-formatDate {
@@ -63,7 +72,7 @@
     }
 
     .auth-profile-nickname-input {
-        width: 380px;
+        width: 580px;
         height: 36px;
         border: 3px solid rgb(221, 221, 221);
         float: left;
@@ -71,7 +80,7 @@
     }
     
     .auth-profile-email-input {
-        width: 380px;
+        width: 580px;
         height: 36px;
         border: 3px solid rgb(221, 221, 221);
         float: left;
@@ -79,7 +88,7 @@
     }
 
     .auth-profile-position-input {
-        width: 380px;
+        width: 580px;
         height: 36px;
         border: 3px solid rgb(221, 221, 221);
         float: left;
@@ -87,7 +96,7 @@
     }
 
     .auth-profile-errorhandler-input {
-        width: 380px;
+        width: 580px;
         height: 36px;
         border: 3px solid rgb(221, 221, 221);
         float: left;
@@ -95,7 +104,7 @@
     }
 
     .auth-profile-insert-button {
-        width: 400px;
+        width: 600px;
         height: 50px;
         margin-top: 26px;
         background-color: cornflowerblue;
@@ -105,7 +114,7 @@
     }
 
     .auth-profile-dark-theme {
-        width: 390px;
+        width: 600px;
         height: 60px;
         display: flex;
         justify-content: space-between;
@@ -113,7 +122,7 @@
     }
 
     .auth-profile-account-exit {
-        width: 390px;
+        width: 600px;
         height: 60px;
         display: flex;
         justify-content: space-between;

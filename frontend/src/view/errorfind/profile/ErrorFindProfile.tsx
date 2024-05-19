@@ -1,15 +1,17 @@
 import { Card, Switch } from "@mui/material"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import '../../../index.css'
 import axios from "axios";
 import './ErrorFindProfile.scss'
 import ProfileInputForm from "../../../component/form/ProfileInputForm";
 import { NewUser } from "../../../model/NewUser";
+import HorizontalScroll from "../../../util/scroll/HorizontalScroll";
 
 function ErrorFindProfile() {
     const [themeIsNight, setThemeIsNight] = useState(false);
     const [userAuthBoardCount, setUserAuthBoardCount] = useState(0);
     const [boardData, setBoardData] = useState([]);
+    const containerRef = useRef(null);
 
     const newUser = new NewUser('', '', '', '', '');
 
@@ -38,7 +40,7 @@ function ErrorFindProfile() {
             .catch(error => {
                 console.error(error);
             })
-    });
+    }, []);
 
     return (
         <div className='errorfind-profile'>
@@ -63,11 +65,13 @@ function ErrorFindProfile() {
             </div>
 
             <section className="errorfind-auth-section">
-                <p>내가 작성한  에러 게시글</p>
+                <p className="errorfind-auth-errorboard">내가 작성한  에러 게시글</p>
 
-                <div className="errorfind-auth-data">
+                <HorizontalScroll container={containerRef.current} />
+
+                <div ref={containerRef} className="errorfind-auth-data">
                     { boardData.map(( board: any, index: any ) => (
-                        <Card className="errorfind-auth-card">
+                        <Card key={index} className="errorfind-auth-card">
                             <p className="errorfind-auth-errortype">{ board.errorType }</p>
                             <p className="errorfind-auth-platform">에러 발생: { board.selectedPlatform }</p>
                             <p className="errorfind-auth-formatDate">{ board.formattedDate }</p>
