@@ -265,6 +265,21 @@ app.get('/detail', (req, res) => {
     res.redirect(`http://localhost:5173/error/detail?author=${author}&uid=${uid}&type=${type}&profile=${profile}&date=${date}&content=${content}&situation=${situation}`);
 });
 
+app.get('/errorBoardData/get/status', (req, res) => {
+    const params = {
+        TableName: 'errorBoard',
+    };
+
+    docClient.scan(params, (err, data) => {
+        if (err) {
+            res.status(500).send('Error saving data to DynamoDB');
+        } else {
+            const filteringStatusData = data.Items.filter(item => item.errorStatus === '진행 중');
+            res.json(filteringStatusData);
+        }
+    })
+})
+
 app.get('/errorBoardData/get/web', (req, res) => {
 
     const params = {

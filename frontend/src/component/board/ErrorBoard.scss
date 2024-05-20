@@ -6,7 +6,7 @@
 .main-component-help-title {
     text-align: left;
     margin-left: 30px;
-    margin-top: 280px;
+    margin-top: 140px;
 }
 
 @media screen and (min-width: 780px) {
@@ -53,9 +53,16 @@
     }
 }
 
-.main-component-swiper {
+.main-component-status {
     width: 730px;
     height: 240px;
+
+    .main-component-status-card {
+        width: 480px;
+        height: 190px;
+        margin: 0 auto;
+        background-color: aliceblue;
+    }
 }
 
 .main-component {

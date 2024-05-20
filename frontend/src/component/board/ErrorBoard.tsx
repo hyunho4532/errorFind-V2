@@ -16,6 +16,8 @@ function ErrorBoard(props: any) {
 
     const [errorType, setErrorType] = useState('');
     const [errorFile, setErrorFile] = useState('');
+    const [errorStatus, setErrorStatus] = useState('');
+    const [errorStatusBoardData, setStatusErrorBoardData] = useState([]);
 
     const deleteOnClick = (uid: string, errorType: string, errorFile: string, e: any) => {
         e.preventDefault();
@@ -40,22 +42,31 @@ function ErrorBoard(props: any) {
     }
 
     useEffect(() => {
-        console.log(errorType);
-        console.log(errorFile);
-    }, [errorType, errorFile]);
+        { errorBoardData.map((error: any, index: any) => (
+            setErrorStatus(error.errorStatus)
+        ))}
+
+        axios.get('http://localhost:50000/errorBoardData/get/status')
+            .then(response => {
+                setStatusErrorBoardData(response.data);
+            })
+    });
 
     return (
         <>
-
-            <h2 className='main-component-help-title'>이러한 에러를 도와주세요!</h2>
-            <Swiper className="main-component-swiper"
+            <h2 className='main-component-help-title'>현재 진행 중인 에러를 도와주세요!</h2>
+            <Swiper className="main-component-status"
                 spaceBetween={50}
                 slidesPerView={1}
                 navigation
                 pagination={{ clickable: true }}>
 
-                { errorBoardData.map((error: any, index: any) => (
-                    <SwiperSlide key={index}>{error.errorType}</SwiperSlide>
+                { errorStatusBoardData.map((error: any, index: any) => (
+                    <SwiperSlide>
+                        <Card key={index} className="main-component-status-card">
+                            <p>{error.errorType}</p>
+                        </Card>
+                    </SwiperSlide>
                 ))}
             </Swiper>
 
