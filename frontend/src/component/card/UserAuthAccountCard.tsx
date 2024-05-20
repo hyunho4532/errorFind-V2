@@ -1,7 +1,8 @@
 import { Card } from "@mui/material";
 import React from "react";
+import UserAuthAccountProps from "./props/UserAuthAccountProps";
 
-class UserAuthAccountCard extends React.Component {
+class UserAuthAccountCard extends React.Component<UserAuthAccountProps> {
     render() {
         return (
             <Card className="auth-profile-account-exit">

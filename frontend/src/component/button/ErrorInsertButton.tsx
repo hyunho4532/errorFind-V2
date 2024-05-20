@@ -32,6 +32,7 @@ function ErrorInsertButton() {
         errorFile: errorBoardData.errorFile,
         errorSituation: errorBoardData.errorSituation,
         profile: authFromJson.userData.profile,
+        errorStatus: "진행 중",
         formattedDate: formattedDateData,
     };
 
