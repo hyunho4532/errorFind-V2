@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import { mouseCardDragHandler, mouseCardLeaveHandler } from '../../event/hover/MouseEventHover';
+import { mouseCardDragHandler, mouseCardLeaveHandler, mouseSwiperDragHandler, mouseSwiperLeaveHandler } from '../../event/hover/MouseEventHover';
 
 function ErrorBoard(props: any) {
     const itemsPerPage = 2;
@@ -64,9 +64,15 @@ function ErrorBoard(props: any) {
 
                 { errorStatusBoardData.map((error: any, index: any) => (
                     <SwiperSlide>
-                        <Card key={index} className="main-component-status-card">
-                            <p>{error.errorType}</p>
-                        </Card>
+                        <div id="main-component-status-data"
+                            onMouseEnter={() => mouseSwiperDragHandler(document.getElementById('main-component-status-data'))}
+                            onMouseLeave={() => mouseSwiperLeaveHandler(document.getElementById('main-component-status-data'))}
+                            >
+
+                            <Card key={index} className="main-component-status-card">
+                                <p>{error.errorType}</p>
+                            </Card>
+                        </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
