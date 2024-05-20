@@ -3,6 +3,12 @@
     margin-left: 30px;
 }
 
+.main-component-help-title {
+    text-align: left;
+    margin-left: 30px;
+    margin-top: 280px;
+}
+
 @media screen and (min-width: 780px) {
     .main-component {
         width: auto;
@@ -28,6 +34,12 @@
             margin-top: 6px;
             margin-left: 16px;
         }
+
+        .main-status-text {
+            margin-top: 6px;
+            margin-left: 32px;
+            font-weight: bold;
+        }
     }
 
     .main-author-text {
@@ -41,13 +53,14 @@
     }
 }
 
-@media screen and (max-width: 356px) {
-
+.main-component-swiper {
+    width: 730px;
+    height: 240px;
 }
 
 .main-component {
     width: 730px;
-    height: 240px;
+    height: 280px;
 
     .main-card {
         margin-left: 30px;

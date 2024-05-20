@@ -5,15 +5,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 
 function ErrorBoard(props: any) {
     const itemsPerPage = 2;
     const startIndex = (props.page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const errorBoardData = props.errorBoardData.slice(startIndex, endIndex);
-
-    const user = localStorage.getItem('user');
-    const userFromJson = JSON.parse(user!);
 
     const [errorType, setErrorType] = useState('');
     const [errorFile, setErrorFile] = useState('');
@@ -47,7 +46,21 @@ function ErrorBoard(props: any) {
 
     return (
         <>
+
+            <h2 className='main-component-help-title'>이러한 에러를 도와주세요!</h2>
+            <Swiper className="main-component-swiper"
+                spaceBetween={50}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}>
+
+                { errorBoardData.map((error: any, index: any) => (
+                    <SwiperSlide key={index}>{error.errorType}</SwiperSlide>
+                ))}
+            </Swiper>
+
             <h2 className="main-component-title">최근에 등록한 에러 목록들 🥇</h2>
+
             <div className="main-component">
                 {errorBoardData.map((error: any, index: any) => (
                     <Card className="main-card">
@@ -59,6 +72,8 @@ function ErrorBoard(props: any) {
                                         <img onClick={(e) => {
                                                 deleteOnClick(error.authuid, error.errorType, error.errorFile, e)
                                             }} className="main-type-delete" src="../../../public/delete.svg"></img>
+                                        
+                                        <p className="main-status-text">{error.errorStatus}</p>
                                     </div>
 
                                     <Link to={`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">

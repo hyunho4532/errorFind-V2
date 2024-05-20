@@ -1,4 +1,4 @@
-import { Card, Switch } from "@mui/material"
+import { Card } from "@mui/material"
 import { useEffect, useRef, useState } from "react";
 import '../../../index.css'
 import axios from "axios";
@@ -6,9 +6,10 @@ import './ErrorFindProfile.scss'
 import ProfileInputForm from "../../../component/form/ProfileInputForm";
 import { NewUser } from "../../../model/NewUser";
 import HorizontalScroll from "../../../util/scroll/HorizontalScroll";
+import UserDarkThemeCard from "../../../component/card/UserDarkThemeCard";
+import UserAuthAccountCard from "../../../component/card/UserAuthAccountCard";
 
 function ErrorFindProfile() {
-    const [themeIsNight, setThemeIsNight] = useState(false);
     const [userAuthBoardCount, setUserAuthBoardCount] = useState(0);
     const [boardData, setBoardData] = useState([]);
     const containerRef = useRef(null);
@@ -82,22 +83,12 @@ function ErrorFindProfile() {
 
             <ProfileInputForm newUser={newUser} />
 
-            <Card className="auth-profile-dark-theme">
-                <p style={{ textAlign: "start", paddingLeft: "16px", fontWeight: "bold" }}>다크 모드 활성화</p>
-                
-                <div style={{ marginTop: "12px" }}>
-                    <Switch onChange={() => setThemeIsNight(!themeIsNight)} />
-                </div>
-                
-            </Card>
+            <UserDarkThemeCard />
 
-            <Card className="auth-profile-account-exit">
-                <p style={{ textAlign: "start", paddingLeft: "16px", fontWeight: "bold" }}>계정 탈퇴</p>
-
-                <div style={{ alignContent: "center", marginRight: "8px" }}>
-                    <button style={{ backgroundColor: "#F05650", fontSize: "16px", color: "white", fontWeight: "bold" }}>계정 탈퇴 진행하기</button>
-                </div>
-            </Card>
+            <UserAuthAccountCard
+                authuid={userAuthFromJson.userData.authuid}
+                nickname={userAuthFromJson.userData.nickname}
+            />
         </div>
     );
 }
