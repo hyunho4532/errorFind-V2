@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import { mouseCardDragHandler } from '../../event/hover/MouseEventHover';
 
 function ErrorBoard(props: any) {
     const itemsPerPage = 2;
@@ -74,38 +75,41 @@ function ErrorBoard(props: any) {
 
             <div className="main-component">
                 {errorBoardData.map((error: any, index: any) => (
-                    <Card className="main-card">
-                            <div key={index} className="main-card-component">
-                                
-                                <div className="main-card-board-datas">
-                                    <div style={{ display: "flex" }}>
-                                        <p className="main-type-text">{error.errorType}</p>
-                                        <img onClick={(e) => {
-                                                deleteOnClick(error.authuid, error.errorType, error.errorFile, e)
-                                            }} className="main-type-delete" src="../../../public/delete.svg"></img>
-                                        
-                                        <p className="main-status-text">{error.errorStatus}</p>
-                                    </div>
-
-                                    <Link to={`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">
-                                        {error.errorFile.length >= 13 ? (
-                                            <p className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
-                                        ) : (
-                                            <p className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
-                                        )}
-                                    </Link>
+                    <div id="main-card-component">
+                        <Card className="main-card">
+                                <div key={index} id="main-card-component" className="main-card-component" 
+                                    onMouseEnter={(() => mouseCardDragHandler(document.getElementById("main-card-component")))}>
                                     
-                                    <div className="main-card-board-data">
-                                        <p className="main-author-text">{error.author}</p>
-                                        <img className="main-profile" src={error.profile} width="50px" height="50px" />
-                                    </div>
+                                    <div className="main-card-board-datas">
+                                        <div style={{ display: "flex" }}>
+                                            <p className="main-type-text">{error.errorType}</p>
+                                            <img onClick={(e) => {
+                                                    deleteOnClick(error.authuid, error.errorType, error.errorFile, e)
+                                                }} className="main-type-delete" src="../../../public/delete.svg"></img>
+                                            
+                                            <p className="main-status-text">{error.errorStatus}</p>
+                                        </div>
 
-                                    <div>
-                                        <p className="main-formatted-date-text">{error.formattedDate}</p>
+                                        <Link to={`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">
+                                            {error.errorFile.length >= 13 ? (
+                                                <p className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
+                                            ) : (
+                                                <p className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
+                                            )}
+                                        </Link>
+                                        
+                                        <div className="main-card-board-data">
+                                            <p className="main-author-text">{error.author}</p>
+                                            <img className="main-profile" src={error.profile} width="50px" height="50px" />
+                                        </div>
+
+                                        <div>
+                                            <p className="main-formatted-date-text">{error.formattedDate}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                    </Card>
+                        </Card>
+                    </div>
                 ))}
             </div>
 
