@@ -6,7 +6,7 @@
 .main-component-help-title {
     text-align: left;
     margin-left: 30px;
-    margin-top: 160px;
+    margin-top: 280px;
 }
 
 @media screen and (min-width: 780px) {
@@ -34,6 +34,12 @@
             margin-top: 6px;
             margin-left: 16px;
         }
+
+        .main-status-text {
+            margin-top: 6px;
+            margin-left: 32px;
+            font-weight: bold;
+        }
     }
 
     .main-author-text {
@@ -54,7 +60,7 @@
 
 .main-component {
     width: 730px;
-    height: 240px;
+    height: 280px;
 
     .main-card {
         margin-left: 30px;

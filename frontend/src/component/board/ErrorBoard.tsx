@@ -72,6 +72,8 @@ function ErrorBoard(props: any) {
                                         <img onClick={(e) => {
                                                 deleteOnClick(error.authuid, error.errorType, error.errorFile, e)
                                             }} className="main-type-delete" src="../../../public/delete.svg"></img>
+                                        
+                                        <p className="main-status-text">{error.errorStatus}</p>
                                     </div>
 
                                     <Link to={`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">
