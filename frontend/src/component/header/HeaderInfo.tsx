@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { HeaderInfoProps } from "./props/HeaderInfoProps";
+import { mouseDragHandler, mouseLeaveHandler } from "../../event/hover/MouseEventHover";
 
 function HeaderInfo(props: HeaderInfoProps) {
 
@@ -23,13 +24,21 @@ function HeaderInfo(props: HeaderInfoProps) {
             <nav className="header-main-funcs">
                 <Link to="/error/average" className="header-main-first-func">
                     <div className="header-nav-link">
-                        <p>에러 통계</p>
+                        <p id="header-nav-text1" 
+                            onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text1"))}
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text1"))}>
+                                에러 통계
+                        </p>
                     </div>
                 </Link>
 
                 <Link to="/error/helping" className="header-main-second-func">
                     <div className="header-nav-link">
-                        <p>헬핑!</p>
+                        <p id="header-nav-text2" 
+                            onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text2"))}
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text2"))}>
+                                헬핑!
+                        </p>
                     </div>
                 </Link>
             </nav>

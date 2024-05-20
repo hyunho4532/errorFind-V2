@@ -14,8 +14,8 @@
     display: flex;
 
     .header-logo {
-        width: 140px;
-        height: 60px;
+        width: 120px;
+        height: 50px;
     }
 
     .header-main-funcs {
@@ -42,6 +42,10 @@
 
         .header-main-email {
             margin-right: 36px;
+            cursor: pointer;
+        }
+
+        .header-error-write {
             cursor: pointer;
         }
     }

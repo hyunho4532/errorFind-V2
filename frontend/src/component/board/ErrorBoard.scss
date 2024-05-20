@@ -24,6 +24,7 @@
         padding: 10px;
 
         .main-type-text {
+            width: 200px;
             margin-top: 6px;
             margin-left: 6px;
         }
@@ -37,8 +38,9 @@
 
         .main-status-text {
             margin-top: 6px;
-            margin-left: 32px;
             font-weight: bold;
+            float: right;
+            margin-left: 18px;
         }
     }
 
@@ -66,7 +68,7 @@
 }
 
 .main-component {
-    width: 730px;
+    width: 790px;
     height: 280px;
 
     .main-card {
