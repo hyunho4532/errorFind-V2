@@ -23,7 +23,7 @@ function HeaderInfo(props: HeaderInfoProps) {
 
             <nav className="header-main-funcs">
                 <Link to="/error/average" className="header-main-first-func">
-                    <div className="header-nav-link">
+                    <div className="header-nav-link1">
                         <p id="header-nav-text1" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text1"))}
                             onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text1"))}>
@@ -33,7 +33,7 @@ function HeaderInfo(props: HeaderInfoProps) {
                 </Link>
 
                 <Link to="/error/helping" className="header-main-second-func">
-                    <div className="header-nav-link">
+                    <div className="header-nav-link2">
                         <p id="header-nav-text2" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text2"))}
                             onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text2"))}>

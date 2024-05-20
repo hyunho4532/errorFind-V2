@@ -2,9 +2,14 @@
     width: 90px;
     padding-left: 20px;
 
-    .header-nav-link {
-        font-size: 16px;
-        cursor: pointer;
+    .header-nav-link1 {
+        width: 80px;
+        margin-left: 48px;
+    }
+
+    .header-nav-link2 {
+        width: 80px;
+        margin-left: 48px;
     }
 }
 
@@ -36,16 +41,17 @@
         align-items: center;
 
         .header-login {
-            margin-right: 36px;
+            margin-right: 72px;
             cursor: pointer;
         }
 
         .header-main-email {
-            margin-right: 36px;
+            margin-left: 60px;
             cursor: pointer;
         }
 
         .header-error-write {
+            margin-left: 60px;
             cursor: pointer;
         }
     }

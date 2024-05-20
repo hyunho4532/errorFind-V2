@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import { mouseCardDragHandler } from '../../event/hover/MouseEventHover';
+import { mouseCardDragHandler, mouseCardLeaveHandler } from '../../event/hover/MouseEventHover';
 
 function ErrorBoard(props: any) {
     const itemsPerPage = 2;
@@ -15,9 +15,9 @@ function ErrorBoard(props: any) {
     const endIndex = startIndex + itemsPerPage;
     const errorBoardData = props.errorBoardData.slice(startIndex, endIndex);
 
-    const [errorType, setErrorType] = useState('');
-    const [errorFile, setErrorFile] = useState('');
-    const [errorStatus, setErrorStatus] = useState('');
+    const [, setErrorType] = useState('');
+    const [, setErrorFile] = useState('');
+    const [, setErrorStatus] = useState('');
     const [errorStatusBoardData, setStatusErrorBoardData] = useState([]);
 
     const deleteOnClick = (uid: string, errorType: string, errorFile: string, e: any) => {
@@ -55,7 +55,7 @@ function ErrorBoard(props: any) {
 
     return (
         <>
-            <h2 className='main-component-help-title'>현재 진행 중인 에러를 도와주세요!</h2>
+            <h2 className='main-component-help-title'>현재 진행 중인 에러를 도와주세요! 😤</h2>
             <Swiper className="main-component-status"
                 spaceBetween={50}
                 slidesPerView={1}
@@ -75,10 +75,12 @@ function ErrorBoard(props: any) {
 
             <div className="main-component">
                 {errorBoardData.map((error: any, index: any) => (
-                    <div id="main-card-component">
-                        <Card className="main-card">
-                                <div key={index} id="main-card-component" className="main-card-component" 
-                                    onMouseEnter={(() => mouseCardDragHandler(document.getElementById("main-card-component")))}>
+                    <div id={`main-card-${index}`} className="main-card">
+
+                        <Card style={{ height: "260px" }}>
+                                <div key={index} id={`main-card-component-${index}`} className="main-card-component"
+                                    onMouseEnter={() => mouseCardDragHandler(document.getElementById(`main-card-${index}`), document.getElementById(`main-card-component-${index}`))}
+                                    onMouseLeave={() => mouseCardLeaveHandler(document.getElementById(`main-card-${index}`), document.getElementById(`main-card-component-${index}`))}>
                                     
                                     <div className="main-card-board-datas">
                                         <div style={{ display: "flex" }}>

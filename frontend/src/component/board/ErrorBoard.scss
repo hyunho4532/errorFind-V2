@@ -68,10 +68,10 @@
 }
 
 .main-component {
-    width: 7px;
-    height: 280px;
 
     .main-card {
+        width: 350px;
+        height: 260px;
         margin-left: 30px;
         cursor: pointer;
         border: 3px solid rgb(221, 221, 221);
@@ -81,6 +81,7 @@
         }
 
         .main-card-component {
+            height: 260px;
 
             .main-card-board-datas {
 
