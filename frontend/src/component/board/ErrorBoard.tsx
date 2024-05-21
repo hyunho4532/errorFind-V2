@@ -7,8 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { mouseCardDragHandler, mouseCardLeaveHandler, mouseSwiperDragHandler, mouseSwiperLeaveHandler } from '../../event/hover/MouseEventHover';
+import { useNavigate } from 'react-router-dom';
 
-function ErrorBoard(props: any) {
+const ErrorBoard = (props: any) => {
+
+    const navigate = useNavigate();
+
     const itemsPerPage = 2;
     const startIndex = (props.page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -41,7 +45,20 @@ function ErrorBoard(props: any) {
             });
     }
 
-    const onErrorBoardDetail = () => {
+    function onErrorBoardDetail(error: any) {
+
+        console.log(error.author);
+
+        axios.get(`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`)
+            .then(response => {
+                const data = response.data;
+
+                console.log(data);
+
+                navigate('/error/detail', {
+                    state: data
+                });
+            })
 
     }
 
@@ -102,9 +119,9 @@ function ErrorBoard(props: any) {
                                         </div>
 
                                         {error.errorFile.length >= 13 ? (
-                                            <p onClick={() => onErrorBoardDetail()} className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
+                                            <p onClick={() => onErrorBoardDetail(error)} className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
                                         ) : (
-                                            <p onClick={() => onErrorBoardDetail()} className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
+                                            <p onClick={() => onErrorBoardDetail(error)} className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
                                         )}
                                         
                                         <div className="main-card-board-data">
