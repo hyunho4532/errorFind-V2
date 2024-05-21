@@ -41,7 +41,7 @@ function ErrorInsertButton() {
     }
 
     const errorInsertButton= () => {
-        axios.post('http://localhost:50000/errorBoardData', data)
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData', data)
             .then(response => {
                 console.log('응답 받음:', response.data);
             })

@@ -1,6 +1,5 @@
 import { Card } from '@mui/material';
 import './ErrorBoard.scss'
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -25,7 +24,7 @@ function ErrorBoard(props: any) {
         setErrorType(errorType);
         setErrorFile(errorFile);
     
-        axios.post('http://localhost:50000/errorBoardData/delete', {
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData/delete', {
             uid: uid,
             errorType: errorType,
             errorFile: errorFile
@@ -42,12 +41,16 @@ function ErrorBoard(props: any) {
             });
     }
 
+    const onErrorBoardDetail = () => {
+
+    }
+
     useEffect(() => {
-        { errorBoardData.map((error: any, index: any) => (
+        { errorBoardData.map((error: any) => (
             setErrorStatus(error.errorStatus)
         ))}
 
-        axios.get('http://localhost:50000/errorBoardData/get/status')
+        axios.get('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData/get/status')
             .then(response => {
                 setStatusErrorBoardData(response.data);
             })
@@ -98,13 +101,11 @@ function ErrorBoard(props: any) {
                                             <p className="main-status-text">{error.errorStatus}</p>
                                         </div>
 
-                                        <Link to={`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">
-                                            {error.errorFile.length >= 13 ? (
-                                                <p className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
-                                            ) : (
-                                                <p className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
-                                            )}
-                                        </Link>
+                                        {error.errorFile.length >= 13 ? (
+                                            <p onClick={() => onErrorBoardDetail()} className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
+                                        ) : (
+                                            <p onClick={() => onErrorBoardDetail()} className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
+                                        )}
                                         
                                         <div className="main-card-board-data">
                                             <p className="main-author-text">{error.author}</p>

@@ -24,7 +24,7 @@ class ErrorBoardDetail extends React.Component<{}, ErrorBoardDetailState> {
     }
 
     componentDidMount(): void {
-        axios.post('http://localhost:50000/commentData/get', {
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/commentData/get', {
             uid: this.state.uid,
             type: this.state.errorType
         })

@@ -38,7 +38,7 @@ class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, Erro
     }
 
     commentInsert() {
-        axios.post('http://localhost:50000/commentData', this.state) 
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/commentData', this.state) 
             .then(response => {
                 console.log(response.data);
             })

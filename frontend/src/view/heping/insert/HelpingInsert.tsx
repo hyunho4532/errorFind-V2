@@ -40,7 +40,7 @@ function HelpingInsert() {
             helpingRequest: errorRequestData
         }
     
-        axios.post('http://localhost:50000/errorHelpingData', data)
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorHelpingData', data)
             .then(response => {
                 console.log("응답 받음", response.data);
             })

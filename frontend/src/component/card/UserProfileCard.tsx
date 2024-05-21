@@ -16,7 +16,7 @@ const UserProfileCard = () => {
 
     useEffect(() => {
 
-        axios.post('http://localhost:50000/profile/boardData/count', data)
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/profile/boardData/count', data)
             .then(response => {
                 setUserAuthBoardCount(response.data);
             })

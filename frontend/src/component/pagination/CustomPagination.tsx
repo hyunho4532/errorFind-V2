@@ -3,7 +3,7 @@ import './Pagination.scss'
 
 function CustomPagination(props: any) {
 
-    const handlePageChange = (event: any, value: any) => {
+    const handlePageChange = (value: any) => {
         props.setPage(value);
     }
 

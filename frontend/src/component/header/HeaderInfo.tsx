@@ -19,7 +19,7 @@ function HeaderInfo(props: HeaderInfoProps) {
 
     return (
         <header className="header-main">
-            <img className="header-logo" src="../../../public/errorfind_logo.jpg" />
+            <img className="header-logo" src="../../../dist/public/errorfind_logo.jpg" />
 
             <nav className="header-main-funcs">
                 <Link to="/error/average" className="header-main-first-func">

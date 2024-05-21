@@ -36,13 +36,13 @@ function ErrorFindAverage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const androidResponse = await axios.get('http://localhost:50000/errorFind/avg/android');
+                const androidResponse = await axios.get('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorFind/avg/android');
                 setSelectedPlatformData(prevData => ({ ...prevData, android: androidResponse.data}))
 
-                const devopsResponse = await axios.get('http://localhost:50000/errorFind/avg/devops');
+                const devopsResponse = await axios.get('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorFind/avg/devops');
                 setSelectedPlatformData(prevData => ({ ...prevData, devops: devopsResponse.data }));
 
-                const webResponse = await axios.get('http://localhost:50000/errorFind/avg/web');
+                const webResponse = await axios.get('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorFind/avg/web');
                 setSelectedPlatformData(prevData => ({ ...prevData, web: webResponse.data }));
             } catch (error) {
                 console.error(error);
