@@ -3,8 +3,9 @@ import './Pagination.scss'
 
 function CustomPagination(props: any) {
 
-    const handlePageChange = (value: any) => {
+    const handlePageChange = (event: React.ChangeEvent<unknown>, value: any) => {
         props.setPage(value);
+        console.log(event);
     }
 
     const itemsPerPage = 2;

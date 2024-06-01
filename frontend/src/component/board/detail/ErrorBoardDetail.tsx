@@ -1,5 +1,5 @@
 import './scss/ErrorBoardDetaill.scss';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import ErrorBoardCommentForm from '../../form/ErrorBoardCommentForm';
@@ -36,7 +36,7 @@ function ErrorBoardDetail() {
     return (
         <article className="error-board-detail">
             <section className="error-board-detail-auth-info">
-                <p className="error-board-detail-author">{data.uid}</p>
+                <p className="error-board-detail-author">{data.author}</p>
                 <img className="error-board-detail-profile" src={data.profile} alt="profile"/>
             </section>
 
