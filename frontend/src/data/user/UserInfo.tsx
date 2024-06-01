@@ -15,7 +15,7 @@ const userInfoInsert = (userData: User) => {
 
     localStorage.setItem('user', JSON.stringify({ userData }));
 
-    axios.post('http://localhost:50000/userData', data)
+    axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/userData', data)
         .then((response) => {
             console.log('응답 받음: ', response.data);
         })

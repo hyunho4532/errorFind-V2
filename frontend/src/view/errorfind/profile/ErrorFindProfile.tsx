@@ -32,7 +32,7 @@ function ErrorFindProfile() {
                 console.error(error);
             });
 
-        axios.post('http://localhost:50000/errorBoardData/detail/auth', {
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData/detail/auth', {
             authuid: userAuthFromJson.userData.authuid
         })
             .then(respose => {

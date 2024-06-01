@@ -1,6 +1,5 @@
 import { Card } from '@mui/material';
 import './ErrorBoard.scss'
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,8 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { mouseCardDragHandler, mouseCardLeaveHandler, mouseSwiperDragHandler, mouseSwiperLeaveHandler } from '../../event/hover/MouseEventHover';
+import { useNavigate } from 'react-router-dom';
 
-function ErrorBoard(props: any) {
+const ErrorBoard = (props: any) => {
+
+    const navigate = useNavigate();
+
     const itemsPerPage = 2;
     const startIndex = (props.page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -25,7 +28,7 @@ function ErrorBoard(props: any) {
         setErrorType(errorType);
         setErrorFile(errorFile);
     
-        axios.post('http://localhost:50000/errorBoardData/delete', {
+        axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData/delete', {
             uid: uid,
             errorType: errorType,
             errorFile: errorFile
@@ -42,12 +45,29 @@ function ErrorBoard(props: any) {
             });
     }
 
+    function onErrorBoardDetail(error: any) {
+
+        console.log(error.author);
+
+        axios.get(`https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`)
+            .then(response => {
+                const data = response.data;
+
+                console.log(data);
+
+                navigate('/error/detail', {
+                    state: data
+                });
+            })
+
+    }
+
     useEffect(() => {
-        { errorBoardData.map((error: any, index: any) => (
+        { errorBoardData.map((error: any) => (
             setErrorStatus(error.errorStatus)
         ))}
 
-        axios.get('http://localhost:50000/errorBoardData/get/status')
+        axios.get('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/errorBoardData/get/status')
             .then(response => {
                 setStatusErrorBoardData(response.data);
             })
@@ -98,13 +118,11 @@ function ErrorBoard(props: any) {
                                             <p className="main-status-text">{error.errorStatus}</p>
                                         </div>
 
-                                        <Link to={`http://localhost:50000/detail?author=${error.author}&uid=${error.authuid}&type=${error.errorType}&profile=${error.profile}&date=${error.formattedDate}&content=${error.errorFile}&situation=${error.errorSituation}`} className="main-link-style">
-                                            {error.errorFile.length >= 13 ? (
-                                                <p className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
-                                            ) : (
-                                                <p className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
-                                            )}
-                                        </Link>
+                                        {error.errorFile.length >= 13 ? (
+                                            <p onClick={() => onErrorBoardDetail(error)} className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
+                                        ) : (
+                                            <p onClick={() => onErrorBoardDetail(error)} className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
+                                        )}
                                         
                                         <div className="main-card-board-data">
                                             <p className="main-author-text">{error.author}</p>

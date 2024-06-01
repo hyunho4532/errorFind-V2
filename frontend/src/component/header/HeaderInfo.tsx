@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom"
 import { HeaderInfoProps } from "./props/HeaderInfoProps";
 import { mouseDragHandler, mouseLeaveHandler } from "../../event/hover/MouseEventHover";
+import { useNavigate } from "react-router-dom";
 
 function HeaderInfo(props: HeaderInfoProps) {
+
+    const navigate = useNavigate();
 
     const errorInsertClick = () => {
         if (props.userData.email === '') {
             alert('로그인을 먼저 진행해주세요.');
         } else {
-            location.href = "/error/write";
+            navigate('/error/write');
         }
     }
 
@@ -19,7 +22,7 @@ function HeaderInfo(props: HeaderInfoProps) {
 
     return (
         <header className="header-main">
-            <img className="header-logo" src="../../../public/errorfind_logo.jpg" />
+            <img className="header-logo" src="../../dist/errorfind_logo.jpg" />
 
             <nav className="header-main-funcs">
                 <Link to="/error/average" className="header-main-first-func">
@@ -27,7 +30,7 @@ function HeaderInfo(props: HeaderInfoProps) {
                         <p id="header-nav-text1" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text1"))}
                             onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text1"))}>
-                                에러 통계
+                                에러 통계 😎
                         </p>
                     </div>
                 </Link>
@@ -37,7 +40,17 @@ function HeaderInfo(props: HeaderInfoProps) {
                         <p id="header-nav-text2" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text2"))}
                             onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text2"))}>
-                                헬핑!
+                                헬핑! 📣
+                        </p>
+                    </div>
+                </Link>
+
+                <Link to="/error/helping" className="header-main-second-func">
+                    <div className="header-nav-link3">
+                        <p id="header-nav-text3" 
+                            onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text2"))}
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text2"))}>
+                                질문 🤗
                         </p>
                     </div>
                 </Link>
