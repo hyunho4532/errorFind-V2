@@ -5,6 +5,7 @@ import ErrorBoardCommentProps from "./props/ErrorBoardCommentProps";
 import axios from "axios";
 import uuid from "react-uuid";
 import formatDate from "../../util/FormatDate";
+import EmojiPicker from "emoji-picker-react"
 
 class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, ErrorBoardCommentState> {
 
@@ -27,7 +28,8 @@ class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, Erro
             conickname: this.userFromJson.userData.nickname,
             like: 0,
             unlike: 0,
-            todayDate: this.todayDate
+            todayDate: this.todayDate,
+            emojiStatus: false
         }
 
         this.commentInsert = this.commentInsert.bind(this);
@@ -35,6 +37,11 @@ class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, Erro
 
     commentOnChange = (e: any) => {
         this.setState({ comment: e.target.value });
+    }
+
+    emojiOnChange = (e: boolean) => {
+        console.log(e);
+        this.setState({ emojiStatus: e })
     }
 
     commentInsert() {
@@ -51,7 +58,17 @@ class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, Erro
         return (
             <footer className="error-board-comment">
                 <input className="error-board-comment-input" type="text" placeholder="댓글을 입력하세요" onChange={this.commentOnChange}></input>
-                <button className="error-board-comment-button" onClick={this.commentInsert}>입력</button>
+                <section className="error-board-comment-section">
+                    <img src="../../../public/emoji_logo.png" className="error-board-comment-emoji" onClick={() => this.emojiOnChange(!this.state.emojiStatus)}></img>
+                    <button className="error-board-comment-button" onClick={this.commentInsert}>입력</button>
+                </section>
+
+                {
+                    this.state.emojiStatus ?
+                        <EmojiPicker className="error-board-comment-emoji" /> :
+                        <div></div>
+                }
+
             </footer>
         )
     }

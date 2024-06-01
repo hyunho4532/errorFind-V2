@@ -25,6 +25,9 @@ interface ErrorBoardCommentState {
 
     // 현재 날짜
     todayDate: string,
+
+    // 이모지 아이콘을 클릭하였을 때
+    emojiStatus: boolean
 }
 
 export default ErrorBoardCommentState
