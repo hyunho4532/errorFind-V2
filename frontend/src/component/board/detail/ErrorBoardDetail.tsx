@@ -2,6 +2,7 @@ import './scss/ErrorBoardDetaill.scss';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 import ErrorBoardCommentForm from '../../form/ErrorBoardCommentForm';
 import ErrorBoardCommentView from '../../../view/comment/ErrorBoardCommentView';
 
@@ -15,6 +16,12 @@ function ErrorBoardDetail() {
     const [commentCount, setCommentCount] = useState(0);
 
     console.log(data.author);
+
+    let sanitizedSituation = data.situation;
+    sanitizedSituation = sanitizedSituation.replace('.', '<br>');
+
+    let sanitizedContent = data.content;
+    sanitizedContent = sanitizedContent.replace('.', '<br>');
 
     useEffect(() => {
 
@@ -32,6 +39,8 @@ function ErrorBoardDetail() {
             console.error(error);
         });
     }, [uid, errorType]);
+
+    console.log(data.situation);
 
     return (
         <article className="error-board-detail">
@@ -56,14 +65,18 @@ function ErrorBoardDetail() {
             <div>
                 <section className="error-board-detail-content">
                     <p className="error-board-detail-content-title">2. 로그 내용</p>
-                    <p className="error-board-detail-content-text">{data.content}</p>
+                    <p className="error-board-detail-content-text" 
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(sanitizedContent) }}    
+                    />
                 </section>
             </div>
 
             <div>
                 <section className="error-board-detail-content">
                     <p className="error-board-detail-content-title">3. 에러가 발생된 시점</p>
-                    <p className="error-board-detail-content-text">{data.situation}</p>
+                    <p className="error-board-detail-content-text" 
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(sanitizedSituation) }}
+                    />
                 </section>
             </div>
 

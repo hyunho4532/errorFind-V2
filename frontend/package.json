@@ -17,8 +17,10 @@
     "@toast-ui/react-editor": "^3.2.3",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
+    "dompurify": "^3.1.5",
     "emoji-picker-react": "^3.1.6",
     "jwt-decode": "^4.0.0",
+    "marked": "^12.0.2",
     "moment": "^2.30.1",
     "peerjs": "^1.5.2",
     "react": "^18.2.0",
@@ -27,6 +29,7 @@
     "react-input-emoji": "^5.9.0",
     "react-list-view": "^1.0.0",
     "react-modal": "^3.16.1",
+    "react-quill": "^2.0.0",
     "react-rounded-image": "^2.0.15",
     "react-router-dom": "^6.22.3",
     "react-select": "^5.8.0",
@@ -39,6 +42,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.0.5",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

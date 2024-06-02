@@ -18,6 +18,9 @@ const ErrorBoard = (props: any) => {
     const endIndex = startIndex + itemsPerPage;
     const errorBoardData = props.errorBoardData.slice(startIndex, endIndex);
 
+    const user = localStorage.getItem("user")
+    const userFromJson = JSON.parse(user!);
+
     const [, setErrorType] = useState('');
     const [, setErrorFile] = useState('');
     const [, setErrorStatus] = useState('');
@@ -76,6 +79,7 @@ const ErrorBoard = (props: any) => {
     return (
         <>
             <h2 className='main-component-help-title'>현재 진행 중인 에러를 도와주세요! 😤</h2>
+
             <Swiper className="main-component-status"
                 spaceBetween={50}
                 slidesPerView={1}
@@ -110,16 +114,20 @@ const ErrorBoard = (props: any) => {
                                     
                                     <div className="main-card-board-datas">
                                         <div style={{ display: "flex" }}>
-                                            <p className="main-type-text">{error.errorType}</p>
-                                            <img onClick={(e) => {
-                                                    deleteOnClick(error.authuid, error.errorType, error.errorFile, e)
-                                                }} className="main-type-delete" src="../../../public/delete.svg"></img>
-                                            
+                                            <p className="main-type-text">{error.errorType}</p>                                            
                                             <p className="main-status-text">{error.errorStatus}</p>
+                                        
+                                            {
+                                                error.authuid === userFromJson.userData.authuid ?
+                                                    <img onClick={(e) => {
+                                                        deleteOnClick(error.authuid, error.errorType, error.errorFile, e)
+                                                    }} className="main-type-delete" src="../../../public/delete.svg"></img>
+                                                : <p></p>
+                                            }
                                         </div>
 
                                         {error.errorFile.length >= 13 ? (
-                                            <p onClick={() => onErrorBoardDetail(error)} className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 32)}...`}</p>
+                                            <p onClick={() => onErrorBoardDetail(error)} className="main-content-text">{`에러 내용: ${error.errorFile.substring(0, 28)}...`}</p>
                                         ) : (
                                             <p onClick={() => onErrorBoardDetail(error)} className="main-content-text">{`에러 내용: ${error.errorFile}`}</p>
                                         )}

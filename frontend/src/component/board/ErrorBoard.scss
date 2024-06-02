@@ -39,8 +39,8 @@
         .main-status-text {
             margin-top: 6px;
             font-weight: bold;
-            float: right;
-            margin-left: 18px;
+            text-align: end;
+            margin-left: 22px;
         }
     }
 
@@ -70,7 +70,7 @@
 .main-component {
 
     .main-card {
-        width: 350px;
+        width: 320px;
         height: 260px;
         margin-left: 30px;
         cursor: pointer;
@@ -86,6 +86,7 @@
             .main-card-board-datas {
 
                 .main-type-text {
+                    width: 170px;
                     height: 16px;
                     font-weight: bold;
                     margin: 0;
@@ -93,6 +94,12 @@
                     margin-top: 4px;
                     margin-left: 6px;
                     text-align: left;
+                }
+
+                .main-type-delete {
+                    width: 30px;
+                    height: 20px;
+                    margin-top: 6px;
                 }
 
                 .main-content-text {
