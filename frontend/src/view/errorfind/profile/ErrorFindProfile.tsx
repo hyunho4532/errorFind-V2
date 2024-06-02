@@ -8,11 +8,13 @@ import { NewUser } from "../../../model/NewUser";
 import HorizontalScroll from "../../../util/scroll/HorizontalScroll";
 import UserDarkThemeCard from "../../../component/card/UserDarkThemeCard";
 import UserAuthAccountCard from "../../../component/card/UserAuthAccountCard";
+import ErrorBoardStatusDialog from "../../../component/dialog/ErrorBoardStatusDialog";
 
 function ErrorFindProfile() {
     const [userAuthBoardCount, setUserAuthBoardCount] = useState(0);
     const [boardData, setBoardData] = useState([]);
     const containerRef = useRef(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     const newUser = new NewUser('', '', '', '', '');
 
@@ -22,6 +24,10 @@ function ErrorFindProfile() {
     const data = {
         id: userAuthFromJson.userData.authuid
     };
+
+    const currentErrorBoardClick = () => {
+        setDialogOpen(true);
+    }
 
     useEffect(() => {
         axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/profile/boardData/count', data)
@@ -70,7 +76,7 @@ function ErrorFindProfile() {
 
                 <HorizontalScroll container={containerRef.current} />
 
-                <div ref={containerRef} className="errorfind-auth-data">
+                <div ref={containerRef} className="errorfind-auth-data" onClick={currentErrorBoardClick}>
                     { boardData.map(( board: any, index: any ) => (
                         <Card key={index} className="errorfind-auth-card">
                             <p className="errorfind-auth-errortype">{ board.errorType }</p>
@@ -89,6 +95,13 @@ function ErrorFindProfile() {
                 authuid={userAuthFromJson.userData.authuid}
                 nickname={userAuthFromJson.userData.nickname}
             />
+
+            
+            <ErrorBoardStatusDialog 
+                dialogOpen={dialogOpen}
+                setDialogOpen={setDialogOpen}
+            />
+
         </div>
     );
 }

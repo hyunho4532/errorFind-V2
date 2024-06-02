@@ -66,9 +66,11 @@ app.post('/platformData', (req, res) => {
 
 app.post('/errorBoardData', (req, res) => {
 
-    const body = req.body;
+    const body = req.body; 
+    
+    body.errorSituation = body.errorSituation.replace(/\./g, '.\n');
 
-    console.log(body);
+    console.log(body.errorSituation);
 
     const params = {
         TableName: 'errorBoard',
@@ -291,7 +293,7 @@ app.get('/errorBoardData/get/web', (req, res) => {
         if (err) {
             res.status(500).send('Error saving data to DynamoDB');
         } else {
-            const filteringWebTypeData = data.Items.filter(item => item.selectedPlatformData === '웹');
+            const filteringWebTypeData = data.Items.filter(item => item.selectedPlatform     === '웹');
             res.json(filteringWebTypeData);
         }
     });
