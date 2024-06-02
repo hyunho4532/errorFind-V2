@@ -66,9 +66,11 @@ app.post('/platformData', (req, res) => {
 
 app.post('/errorBoardData', (req, res) => {
 
-    const body = req.body;
+    const body = req.body; 
+    
+    body.errorSituation = body.errorSituation.replace(/\./g, '.\n');
 
-    console.log(body);
+    console.log(body.errorSituation);
 
     const params = {
         TableName: 'errorBoard',
