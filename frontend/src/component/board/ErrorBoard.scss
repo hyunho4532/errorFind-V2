@@ -66,19 +66,36 @@
         background-color: white;
         border: 3px solid rgb(221, 221, 221);
 
-        .main-component-status-profile {
-            width: 50px;
-            height: 50px;
-            border-radius: 60%;
-            float: left;
-            margin-top: 16px;
-            margin-left: 12px;
+        .main-component-status-section {
+            display: flex;
+
+            .main-component-status-profile {
+                width: 50px;
+                height: 50px;
+                border-radius: 60%;
+                margin-top: 16px;
+                margin-left: 12px;
+                display: flex;
+                text-align: start;
+            }
+    
+            .main-component-status-content {
+                margin-top: 30px;
+                margin-left: 14px;
+                font-weight: bold;
+                text-align: start;
+            }
         }
 
-        .main-component-status-content {
-            float: left;
-            margin-top: 30px;
-            margin-left: 14px;
+        .main-component-status-author {
+            text-align: start;
+            padding-left: 12px;
+        }
+
+        .main-component-status-log {
+            text-align: start;
+            padding-left: 12px;
+            padding-top: 18px;
             font-weight: bold;
         }
     }

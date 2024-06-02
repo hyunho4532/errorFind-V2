@@ -94,9 +94,19 @@ const ErrorBoard = (props: any) => {
                             >
 
                             <Card key={index} className="main-component-status-card">
-                                <img className="main-component-status-profile" src={error.profile}></img>
-                                <p className="main-component-status-content">내용: {error.errorType}</p>
-                                <p className="main-component-status-content2">내용: {error.errorType}</p>
+                                <section className="main-component-status-section">
+                                    <img className="main-component-status-profile" src={error.profile}></img>
+                                    <p className="main-component-status-content">에러 이름: {error.errorType}</p>
+                                </section>
+
+                                <section>
+                                    <p className="main-component-status-author">작성자: {error.author}</p>
+                                    {
+                                        error.errorFile.length != null ?
+                                            <p className="main-component-status-log">에러 내용: {error.errorFile.substring(0, 50)} ...</p> :
+                                            <p className="main-component-status-log">에러 내용: {error.errorFile}</p>
+                                    }
+                                </section>
                             </Card>
                         </div>
                     </SwiperSlide>
@@ -112,7 +122,7 @@ const ErrorBoard = (props: any) => {
                         <Card style={{ height: "260px" }}>
                                 <div key={index} id={`main-card-component-${index}`} className="main-card-component"
                                     onMouseEnter={() => mouseCardDragHandler(document.getElementById(`main-card-${index}`), document.getElementById(`main-card-component-${index}`))}
-                                    onMouseLeave={() => mouseCardLeaveHandler(document.getElementById(`main-card-${index}`), document.getElementById(`main-card-component-${index}`))}>
+                                    onMouseLeave={()  => mouseCardLeaveHandler(document.getElementById(`main-card-${index}`), document.getElementById(`main-card-component-${index}`))}>
                                     
                                     <div className="main-card-board-datas">
                                         <div style={{ display: "flex" }}>
