@@ -94,7 +94,9 @@ const ErrorBoard = (props: any) => {
                             >
 
                             <Card key={index} className="main-component-status-card">
-                                <p>{error.errorType}</p>
+                                <img className="main-component-status-profile" src={error.profile}></img>
+                                <p className="main-component-status-content">내용: {error.errorType}</p>
+                                <p className="main-component-status-content2">내용: {error.errorType}</p>
                             </Card>
                         </div>
                     </SwiperSlide>

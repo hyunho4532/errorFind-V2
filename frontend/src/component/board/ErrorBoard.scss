@@ -60,10 +60,27 @@
     height: 240px;
 
     .main-component-status-card {
-        width: 480px;
+        width: 580px;
         height: 190px;
         margin: 0 auto;
-        background-color: aliceblue;
+        background-color: white;
+        border: 3px solid rgb(221, 221, 221);
+
+        .main-component-status-profile {
+            width: 50px;
+            height: 50px;
+            border-radius: 60%;
+            float: left;
+            margin-top: 16px;
+            margin-left: 12px;
+        }
+
+        .main-component-status-content {
+            float: left;
+            margin-top: 30px;
+            margin-left: 14px;
+            font-weight: bold;
+        }
     }
 }
 
