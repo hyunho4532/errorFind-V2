@@ -23,6 +23,10 @@ function ErrorFindProfile() {
         id: userAuthFromJson.userData.authuid
     };
 
+    const currentErrorBoardClick = () => {
+        
+    }
+
     useEffect(() => {
         axios.post('https://port-0-errorfind-backend-2aat2clulwvny3.sel5.cloudtype.app/profile/boardData/count', data)
             .then(response => {
@@ -70,7 +74,7 @@ function ErrorFindProfile() {
 
                 <HorizontalScroll container={containerRef.current} />
 
-                <div ref={containerRef} className="errorfind-auth-data">
+                <div ref={containerRef} className="errorfind-auth-data" onClick={currentErrorBoardClick}>
                     { boardData.map(( board: any, index: any ) => (
                         <Card key={index} className="errorfind-auth-card">
                             <p className="errorfind-auth-errortype">{ board.errorType }</p>
