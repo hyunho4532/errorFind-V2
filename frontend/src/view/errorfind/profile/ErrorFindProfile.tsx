@@ -8,11 +8,13 @@ import { NewUser } from "../../../model/NewUser";
 import HorizontalScroll from "../../../util/scroll/HorizontalScroll";
 import UserDarkThemeCard from "../../../component/card/UserDarkThemeCard";
 import UserAuthAccountCard from "../../../component/card/UserAuthAccountCard";
+import ErrorBoardStatusDialog from "../../../component/dialog/ErrorBoardStatusDialog";
 
 function ErrorFindProfile() {
     const [userAuthBoardCount, setUserAuthBoardCount] = useState(0);
     const [boardData, setBoardData] = useState([]);
     const containerRef = useRef(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     const newUser = new NewUser('', '', '', '', '');
 
@@ -24,7 +26,7 @@ function ErrorFindProfile() {
     };
 
     const currentErrorBoardClick = () => {
-        
+        setDialogOpen(true);
     }
 
     useEffect(() => {
@@ -93,6 +95,13 @@ function ErrorFindProfile() {
                 authuid={userAuthFromJson.userData.authuid}
                 nickname={userAuthFromJson.userData.nickname}
             />
+
+            
+            <ErrorBoardStatusDialog 
+                dialogOpen={dialogOpen}
+                setDialogOpen={setDialogOpen}
+            />
+
         </div>
     );
 }
