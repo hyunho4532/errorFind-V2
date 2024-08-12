@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client'
 import {RouterProvider} from "react-router-dom";
 import router from "./router/Router.tsx";
 import { RecoilRoot } from 'recoil';
+import './font.css';
 
 function App() {
 

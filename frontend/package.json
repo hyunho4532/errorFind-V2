@@ -17,13 +17,13 @@
     "@toast-ui/react-editor": "^3.2.3",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
-    "emoji-picker-react": "^3.1.6",
+    "emoji-picker-react": "^4.11.1",
     "jwt-decode": "^4.0.0",
     "moment": "^2.30.1",
     "peerjs": "^1.5.2",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.1",
     "react-input-emoji": "^5.9.0",
     "react-list-view": "^1.0.0",
     "react-modal": "^3.16.1",
@@ -48,6 +48,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
-    "vite": "^5.2.8"
+    "vite": "^5.4.0"
   }
 }
