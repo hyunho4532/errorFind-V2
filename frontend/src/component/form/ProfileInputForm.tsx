@@ -17,23 +17,17 @@ class ProfileInputForm extends React.Component<ProfileInputProps> {
     }
 
     userAuthChange = (e: React.ChangeEvent<HTMLInputElement>, type: any) => {
-        if (type == 'nickname') {
-            this.setState({
+        switch(type) {
+            case 'nickname': return this.setState({
                 nickname: e.target.value
             })
-        }
-        else if (type == 'email') {
-            this.setState({
+            case 'email': return this.setState({
                 email: e.target.value
             })
-        }
-        else if (type == 'position') {
-            this.setState({
+            case 'position': return this.setState({
                 position: e.target.value
             })
-        }
-        else {
-            this.setState({
+            default: return this.setState({
                 errorhandler: e.target.value
             })
         }

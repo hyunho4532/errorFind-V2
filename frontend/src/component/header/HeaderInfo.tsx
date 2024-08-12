@@ -19,7 +19,6 @@ function HeaderInfo(props: HeaderInfoProps) {
         props.setUserProfileSelect(!userProfileSelect);
     }
 
-
     return (
         <header className="header-main">
             <img className="header-logo" src="https://errorfind.vercel.app/errorfind_logo.jpg" />
@@ -59,13 +58,10 @@ function HeaderInfo(props: HeaderInfoProps) {
             <div className="header-main-title">
                 <p className="header-main-email" onClick={() => profileSelect(props.userProfileSelect)}>{props.userData.email}</p>
 
-                {
-                    props.userData.email === '' 
-                    ? <button className="header-login" onClick={() => props.setModalIsOpen(true)}>로그인</button>
-                    : ''
-                }
+                { props.userData.email === '' 
+                        ? <button className="header-login" onClick={() => props.setModalIsOpen(true)}>로그인</button>
+                        : '' }
 
-                
                 <p className="header-error-write" onClick={errorInsertClick}>에러 등록하기</p>
             </div>
         </header>
