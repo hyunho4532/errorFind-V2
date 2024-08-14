@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import './Header.scss'
 import UserProfileCard from '../card/UserProfileCard';
 import { HeaderProps } from './props/HeaderProps';
@@ -12,23 +12,20 @@ function Header(props: HeaderProps) {
     const [userModalIsOpen, setUserModalIsOpen] = useState(false);
     const [userProfileSelect, setUserProfileSelect] = useState(false);
 
-    const storedEmail = localStorage.getItem('userEmail');
-    const storedAuthUid = localStorage.getItem('authuid');
-
-    useEffect(() => {
+    useMemo(() => {
     
-        if (storedEmail !== null) {
-            const userEmail = JSON.parse(storedEmail);
-            const userAuthUid = JSON.parse(storedAuthUid!);
+        if (localStorage.getItem('userEmail') !== null) {
+            const userEmail = JSON.parse(localStorage.getItem('userEmail')!);
+            const userAuthUid = JSON.parse(localStorage.getItem('authuid')!);
 
             props.setUserData({ ...props.userData, email: userEmail.email, authuid: userAuthUid.authuid });
         }
     
-    }, [storedEmail]);
+    }, [localStorage.getItem('userEmail')]);
 
     return (
         <>
-            <HeaderInfo 
+            <HeaderInfo
                 userData={props.userData}
                 userProfileSelect={userProfileSelect}
                 setUserProfileSelect={setUserProfileSelect}

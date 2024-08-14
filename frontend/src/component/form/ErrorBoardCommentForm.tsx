@@ -5,7 +5,7 @@ import ErrorBoardCommentProps from "./props/ErrorBoardCommentProps";
 import axios from "axios";
 import uuid from "react-uuid";
 import formatDate from "../../util/FormatDate";
-import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
+import EmojiPicker from "emoji-picker-react";
 
 class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, ErrorBoardCommentState> {
 

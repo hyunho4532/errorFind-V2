@@ -63,7 +63,12 @@
         width: 480px;
         height: 190px;
         margin: 0 auto;
-        background-color: aliceblue;
+        background-color: white;
+
+        .main-component-status-type {
+            font-family: 'TmonMonsori';
+            font-size: 18px;
+        }
     }
 }
 
