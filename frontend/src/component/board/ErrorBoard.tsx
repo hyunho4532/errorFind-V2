@@ -8,6 +8,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { mouseCardDragHandler, mouseCardLeaveHandler, mouseSwiperDragHandler, mouseSwiperLeaveHandler } from '../../event/hover/MouseEventHover';
 import { useNavigate } from 'react-router-dom';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const ErrorBoard = (props: any) => {
 
@@ -76,12 +80,17 @@ const ErrorBoard = (props: any) => {
     return (
         <>
             <h2 className='main-component-help-title'>현재 진행 중인 에러를 도와주세요! 😤</h2>
-            <Swiper className="main-component-status"
-                spaceBetween={50}
+            <Swiper 
+                className="main-component-status"
+                spaceBetween={30}
+                centeredSlides={true}
                 slidesPerView={1}
-                navigation
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false
+                }}
+                modules={[Autoplay]}
                 pagination={{ clickable: true }}>
-
                 { errorStatusBoardData.map((error: any, index: any) => (
                     <SwiperSlide>
                         <div id="main-component-status-data"
