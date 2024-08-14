@@ -3,19 +3,18 @@
     padding-left: 20px;
 
     .header-nav-link1 {
-        width: 120px;
+        width: 90px;
         font-family: 'GangwonEduPowerExtraBoldA';
     }
 
     .header-nav-link2 {
-        width: 120px;
-        margin-left: 20px;
+        width: 90px;
+        padding-left: 8px;
         font-family: 'GangwonEduPowerExtraBoldA';
     }
 
     .header-nav-link3 {
-        width: 120px;
-        margin-left: 20px;
+        width: 90px;
         font-family: 'GangwonEduPowerExtraBoldA';
     }
 }
@@ -47,6 +46,18 @@
         justify-content: flex-end;
         align-items: center;
 
+        .header-main-popover-button {
+            font-size: 12px;
+        }
+
+        .header-main.popover-panel {
+            position: absolute;
+            z-index: 10; /* PopoverPanel이 다른 요소들보다 위에 표시되도록 합니다 */
+            top: 100%; /* PopoverButton 바로 아래에 표시되도록 설정 */
+            left: 0; /* PopoverButton과 수평 정렬 */
+            margin-top: 8px; /* PopoverButton과 간격 */
+        }
+
         .header-login {
             margin-right: 72px;
             cursor: pointer;
@@ -55,11 +66,13 @@
         .header-main-email {
             margin-left: 60px;
             cursor: pointer;
+            font-family: 'GangwonEduPowerExtraBoldA';
         }
 
         .header-error-write {
-            margin-left: 60px;
+            margin-left: 20px;
             cursor: pointer;
+            font-family: 'GangwonEduPowerExtraBoldA';
         }
     }
 }
@@ -67,7 +80,6 @@
 .header-profile {
     width: 300px;
     height: 360px;
-    transform: translateX(400px);
     margin-top: 60px;
 
     .header-profile-info {
