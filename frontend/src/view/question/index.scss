@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    justify-content: center;
 }
 
 .sidebar {
@@ -10,6 +11,9 @@
 }
 
 .main-content {
-    flex: 1;
-    padding: 20px;
+    background-color: aliceblue;
+    width: 1000px;
+    height: 91vh;
+    align-self: center;
+    margin-left: 240px;
 }
