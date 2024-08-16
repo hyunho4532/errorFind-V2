@@ -1,14 +1,29 @@
 import { Link, useNavigate } from "react-router-dom";
-import { HeaderInfoProps } from "./props/HeaderInfoProps";
 import { mouseDragHandler, mouseLeaveHandler } from "../../event/hover/MouseEventHover";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import UserProfileCard from "../card/UserProfileCard";
+import { supabase } from "../../config";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
+export interface HeaderInfoProps {
+    setModalIsOpen: Dispatch<SetStateAction<boolean>>
+}
 
 function HeaderInfo(props: HeaderInfoProps) {
+    
+    const [email, setEmail] = useState<any>('');
     const navigate = useNavigate();
 
+
+    useEffect(() => {
+        supabase.auth.getUser()
+            .then(response => {
+                setEmail(response.data.user?.email)
+            });
+    });
+
     const errorInsertClick = () => {
-        if (props.userData.email === '') {
+        if (email === '') {
             alert('로그인을 먼저 진행해주세요.');
         } else {
             navigate('/error/write');
@@ -61,7 +76,7 @@ function HeaderInfo(props: HeaderInfoProps) {
             <div className="header-main-title">
                 <Popover className="reactive">
                     <PopoverButton className="header-main-popover-button">
-                        {props.userData.email}
+                        {email}
                     </PopoverButton>
 
                     <PopoverPanel className="header-main-popover-panel">
@@ -70,7 +85,7 @@ function HeaderInfo(props: HeaderInfoProps) {
                 </Popover>
             </div>
 
-            {props.userData.email === '' && (
+            {email === '' && (
                 <button 
                     className="header-login" 
                     onClick={() => props.setModalIsOpen(true)}>
