@@ -1,3 +1,28 @@
+.modal {
+    height: 660px;
+}
+
 .Title {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    text-align: center;
+    font-size: 26px;
+}
+
+.Select {
+    width: 240px;
+    height: 40px;
+}
+
+.Content {
+    margin-top: 46px;
+}
+
+.QuestionButton {
+    width: 650px;
+    height: 62px;
+    margin-top: 52px;
+    background-color: cornflowerblue;
+    font-size: 18px;
+    color: white;
     font-family: 'GangwonEduPowerExtraBoldA';
 }

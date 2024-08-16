@@ -38,3 +38,26 @@ export const MenuItems = [
         link: "/question/spring"
     }
 ]
+
+export const LanguageItems = [
+    {
+        key: 1,
+        title: "자바스크립트"
+    },
+    {
+        key: 2,
+        title: "타입스크립트"
+    },
+    {
+        key: 3,
+        title: "React"
+    },
+    {
+        key: 4,
+        title: "Next"
+    },
+    {
+        key: 5,
+        title: "Spring"
+    },
+]
