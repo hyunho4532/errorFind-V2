@@ -46,7 +46,7 @@ function HeaderInfo(props: HeaderInfoProps) {
                     </div>
                 </Link>
 
-                <Link to="/error/helping" className="header-main-second-func">
+                <Link to="/question" className="header-main-second-func">
                     <div className="header-nav-link3">
                         <p 
                             id="header-nav-text3" 

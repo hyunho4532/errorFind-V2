@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "flowbite-react": "^0.10.1",
+    "react-pro-sidebar": "^1.1.0"
+  }
+}

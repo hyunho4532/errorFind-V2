@@ -13,7 +13,7 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <RecoilRoot>
-    <App />
+      <App />
   </RecoilRoot>
 );
 
