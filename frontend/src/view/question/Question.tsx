@@ -2,19 +2,18 @@ import { useRecoilValue } from "recoil";
 import { SideBar } from "../../component/sidebar";
 import './index.scss';
 import { state } from "../../recoil/Atom";
+import { JavaScriptPage } from "./javascript";
 
 export function Question() {
 
     const link = useRecoilValue(state);
-
-    console.log(link);
 
     return (
         <div className="container">
             <SideBar />
             <div className="main-content">
                 { link === '/question/javascript' 
-                    ? <p>자바스크립트 질문</p> 
+                    ? <JavaScriptPage />
                     : link === '/question/typescript'
                         ? <p>타입스크립트 질문</p> 
                     : link === '/question/react'
