@@ -2,7 +2,17 @@ import { Modal, Typography } from "@mui/material"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import UserSetItem from "../../storage/UserSetItem";
 import { jwtDecode } from "jwt-decode";
-import { LoginDialogProps } from "./props/LoginDialogProps";
+
+import { Dispatch, SetStateAction } from "react"
+import { User } from "../../model/User";
+
+export interface LoginDialogProps {
+    userData: User
+    setUserData: (user: User) => void
+    modalIsOpen: boolean,
+    setModalIsOpen: Dispatch<SetStateAction<boolean>>,
+    setUserModalIsOpen: Dispatch<SetStateAction<boolean>>,
+}
 
 function LoginDialog(props: LoginDialogProps) {
 

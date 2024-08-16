@@ -18,10 +18,24 @@
     margin-left: 240px;
 }
 
-.JavaScript {
+.Main {
+    display: flex;
+    justify-content: center;
     font-family: 'GangwonEduPowerExtraBoldA';
     color: white;
+}
+
+.Main .JavaScript {
     font-size: 22px;
+    text-align: center;
+}
+
+.Main .Button {
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    margin-left: 12px;
 }
 
 .CurrentQuestion {
