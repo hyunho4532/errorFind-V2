@@ -73,8 +73,7 @@ function HeaderInfo(props: HeaderInfoProps) {
             {props.userData.email === '' && (
                 <button 
                     className="header-login" 
-                    onClick={() => props.setModalIsOpen(true)}
-                >
+                    onClick={() => props.setModalIsOpen(true)}>
                     로그인
                 </button>
             )}

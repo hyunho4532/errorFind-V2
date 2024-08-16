@@ -19,14 +19,18 @@ export function QuestionDialog(props: LoginDialogProps) {
         props.setModalIsOpen(false);
     };
 
-    const questionClick = () => {
+    const questionClick = async () => {
         if (editorRef.current) {
             const editorInstance = editorRef.current.getInstance().getMarkdown();
             
-            supabase.from('Question').insert([{
+            const { error } = await supabase.from('Question').insert([{
                 language: language,
                 content: editorInstance
             }])
+
+            if (error) {
+                console.log(error);
+            }
 
         } else {
             console.error("Editor instance is not available");
