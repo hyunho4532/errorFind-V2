@@ -1,5 +1,6 @@
 .header-main-func {
     width: 90px;
+    height: 30px;
     padding-left: 20px;
 
     .header-nav-link1 {
@@ -20,13 +21,12 @@
 }
 
 .header-main {
-    top: 0;
     width: 100%;
     display: flex;
 
     .header-logo {
         width: 120px;
-        height: 50px;
+        height: 80px;
     }
 
     .header-main-funcs {
@@ -48,14 +48,12 @@
 
         .header-main-popover-button {
             font-size: 12px;
+            margin-bottom: 24px;
         }
 
         .header-main.popover-panel {
             position: absolute;
-            z-index: 10; /* PopoverPanel이 다른 요소들보다 위에 표시되도록 합니다 */
-            top: 100%; /* PopoverButton 바로 아래에 표시되도록 설정 */
-            left: 0; /* PopoverButton과 수평 정렬 */
-            margin-top: 8px; /* PopoverButton과 간격 */
+            z-index: 10;
         }
 
         .header-login {
@@ -64,13 +62,11 @@
         }
 
         .header-main-email {
-            margin-left: 60px;
             cursor: pointer;
             font-family: 'GangwonEduPowerExtraBoldA';
         }
 
         .header-error-write {
-            margin-left: 20px;
             cursor: pointer;
             font-family: 'GangwonEduPowerExtraBoldA';
         }

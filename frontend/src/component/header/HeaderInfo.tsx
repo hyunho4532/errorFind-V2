@@ -19,7 +19,7 @@ function HeaderInfo(props: HeaderInfoProps) {
         <header className="header-main">
             <img 
                 className="header-logo" 
-                src="https://errorfind.vercel.app/errorfind_logo.jpg" 
+                src="../public/movietok_logo.jpg" 
                 alt="Error Find Logo"
             />
 
@@ -29,8 +29,7 @@ function HeaderInfo(props: HeaderInfoProps) {
                         <p 
                             id="header-nav-text1" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text1"))}
-                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text1"))}
-                        >
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text1"))}>
                             에러 통계 😎
                         </p>
                     </div>
@@ -41,20 +40,18 @@ function HeaderInfo(props: HeaderInfoProps) {
                         <p 
                             id="header-nav-text2" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text2"))}
-                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text2"))}
-                        >
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text2"))}>
                             헬핑! 📣
                         </p>
                     </div>
                 </Link>
 
-                <Link to="/error/helping" className="header-main-second-func">
+                <Link to="/question" className="header-main-second-func">
                     <div className="header-nav-link3">
                         <p 
                             id="header-nav-text3" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text3"))}
-                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text3"))}
-                        >
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text3"))}>
                             질문 🤗
                         </p>
                     </div>
