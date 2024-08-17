@@ -1,6 +1,15 @@
 import { Modal, Typography } from "@mui/material"
 import userInfoInsert from "../../data/user/UserInfo"
-import { AuthInfoDialogProps } from "./props/AuthInfoDialogProps"
+import { Dispatch, SetStateAction } from "react"
+import { User } from "../../model/User"
+
+export interface AuthInfoDialogProps {
+    userData: User
+    setUserData: (user: User) => void
+    userModalIsOpen: boolean,
+    setUserModalIsOpen: Dispatch<SetStateAction<boolean>>,
+}
+
 
 function AuthInfoDialog(props: AuthInfoDialogProps) {
 

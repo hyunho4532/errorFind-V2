@@ -1,14 +1,28 @@
 import { Link, useNavigate } from "react-router-dom";
-import { HeaderInfoProps } from "./props/HeaderInfoProps";
 import { mouseDragHandler, mouseLeaveHandler } from "../../event/hover/MouseEventHover";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import UserProfileCard from "../card/UserProfileCard";
+import { supabase } from "../../config";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
+export interface HeaderInfoProps {
+    setModalIsOpen: Dispatch<SetStateAction<boolean>>
+}
 
 function HeaderInfo(props: HeaderInfoProps) {
+    
+    const [email, setEmail] = useState<any>('');
     const navigate = useNavigate();
 
+    useEffect(() => {
+        supabase.auth.getUser()
+            .then(response => {
+                setEmail(response.data.user?.email)
+            });
+    });
+
     const errorInsertClick = () => {
-        if (props.userData.email === '') {
+        if (email === '') {
             alert('로그인을 먼저 진행해주세요.');
         } else {
             navigate('/error/write');
@@ -19,7 +33,7 @@ function HeaderInfo(props: HeaderInfoProps) {
         <header className="header-main">
             <img 
                 className="header-logo" 
-                src="https://errorfind.vercel.app/errorfind_logo.jpg" 
+                src="../public/movietok_logo.jpg" 
                 alt="Error Find Logo"
             />
 
@@ -29,8 +43,7 @@ function HeaderInfo(props: HeaderInfoProps) {
                         <p 
                             id="header-nav-text1" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text1"))}
-                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text1"))}
-                        >
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text1"))}>
                             에러 통계 😎
                         </p>
                     </div>
@@ -41,20 +54,18 @@ function HeaderInfo(props: HeaderInfoProps) {
                         <p 
                             id="header-nav-text2" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text2"))}
-                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text2"))}
-                        >
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text2"))}>
                             헬핑! 📣
                         </p>
                     </div>
                 </Link>
 
-                <Link to="/error/helping" className="header-main-second-func">
+                <Link to="/question" className="header-main-second-func">
                     <div className="header-nav-link3">
                         <p 
                             id="header-nav-text3" 
                             onMouseEnter={() => mouseDragHandler(document.getElementById("header-nav-text3"))}
-                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text3"))}
-                        >
+                            onMouseLeave={() => mouseLeaveHandler(document.getElementById("header-nav-text3"))}>
                             질문 🤗
                         </p>
                     </div>
@@ -64,7 +75,7 @@ function HeaderInfo(props: HeaderInfoProps) {
             <div className="header-main-title">
                 <Popover className="reactive">
                     <PopoverButton className="header-main-popover-button">
-                        {props.userData.email}
+                        {email}
                     </PopoverButton>
 
                     <PopoverPanel className="header-main-popover-panel">
@@ -73,11 +84,10 @@ function HeaderInfo(props: HeaderInfoProps) {
                 </Popover>
             </div>
 
-            {props.userData.email === '' && (
+            {email === undefined && (
                 <button 
                     className="header-login" 
-                    onClick={() => props.setModalIsOpen(true)}
-                >
+                    onClick={() => props.setModalIsOpen(true)}>
                     로그인
                 </button>
             )}

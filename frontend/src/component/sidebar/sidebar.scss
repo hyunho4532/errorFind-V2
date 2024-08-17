@@ -1,0 +1,28 @@
+.Sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    background-color: cornflowerblue;
+}
+
+.Sidebar .Title {
+    font-family: 'TmonMonsori';
+    font-size: 22px;
+    color: white;
+}
+
+.Sidebar .Items {
+    font-size: 18px;
+    font-family: 'GangwonEduPowerExtraBoldA';
+    text-align: center;
+    padding-top: 18px;
+    color: white;
+}
+
+.Sidebar .Items .Item {
+    text-align: center;
+    padding-top: 16px;
+    cursor: pointer;
+}

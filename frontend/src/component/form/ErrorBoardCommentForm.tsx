@@ -9,8 +9,8 @@ import EmojiPicker from "emoji-picker-react";
 
 class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, ErrorBoardCommentState> {
 
-    user = localStorage.getItem('user');
-    userFromJson = JSON.parse(this.user!);
+    token = localStorage.getItem('sb-cvbkuzrehmguxtilpgkl-auth-token');
+    userFromJson = JSON.parse(this.token!);
 
     date = new Date();
 
@@ -24,8 +24,8 @@ class ErrorBoardCommentForm extends React.Component<ErrorBoardCommentProps, Erro
             authid: props.authuid,
             type: props.type,
             comment: '', 
-            couid: this.userFromJson.userData.authuid,
-            conickname: this.userFromJson.userData.nickname,
+            couid: this.userFromJson.user.id,
+            conickname: this.userFromJson.user.user_metadata.name,
             like: 0,
             unlike: 0,
             todayDate: this.todayDate,
