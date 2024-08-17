@@ -18,6 +18,7 @@ function LoginDialog(props: LoginDialogProps) {
         await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
+              redirectTo: 'https://cvbkuzrehmguxtilpgkl.supabase.co/auth/v1/callback',
               queryParams: {
                 access_type: 'offline',
                 prompt: 'consent',

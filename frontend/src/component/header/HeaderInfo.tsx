@@ -14,7 +14,6 @@ function HeaderInfo(props: HeaderInfoProps) {
     const [email, setEmail] = useState<any>('');
     const navigate = useNavigate();
 
-
     useEffect(() => {
         supabase.auth.getUser()
             .then(response => {
@@ -85,7 +84,7 @@ function HeaderInfo(props: HeaderInfoProps) {
                 </Popover>
             </div>
 
-            {email === '' && (
+            {email === undefined && (
                 <button 
                     className="header-login" 
                     onClick={() => props.setModalIsOpen(true)}>
