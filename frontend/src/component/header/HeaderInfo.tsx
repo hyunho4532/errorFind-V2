@@ -4,6 +4,7 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import UserProfileCard from "../card/UserProfileCard";
 import { supabase } from "../../config";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import UserSetItem from "../../storage/UserSetItem";
 
 export interface HeaderInfoProps {
     setModalIsOpen: Dispatch<SetStateAction<boolean>>
@@ -17,7 +18,9 @@ function HeaderInfo(props: HeaderInfoProps) {
     useEffect(() => {
         supabase.auth.getUser()
             .then(response => {
-                setEmail(response.data.user?.email)
+                console.log(response.data);
+                UserSetItem(response.data.user?.email, response.data.user?.id, response.data.user?.user_metadata.picture);
+                setEmail(response.data.user?.email);
             });
     });
 
@@ -72,25 +75,29 @@ function HeaderInfo(props: HeaderInfoProps) {
                 </Link>
             </nav>
 
-            <div className="header-main-title">
-                <Popover className="reactive">
-                    <PopoverButton className="header-main-popover-button">
-                        {email}
-                    </PopoverButton>
+            { email != null && 
+                <div className="header-main-title">
+                    <Popover className="reactive">
+                        <PopoverButton className="header-main-popover-button">
+                            {email}
+                        </PopoverButton>
 
-                    <PopoverPanel className="header-main-popover-panel">
-                        <UserProfileCard />
-                    </PopoverPanel>
-                </Popover>
+                        <PopoverPanel className="header-main-popover-panel">
+                            <UserProfileCard />
+                        </PopoverPanel>
+                    </Popover>
+                </div> 
+            }
+
+            <div className="header-div-login">
+                {email === undefined && (
+                    <button 
+                        className="header-login"
+                        onClick={() => props.setModalIsOpen(true)}>
+                        로그인
+                    </button>
+                )}
             </div>
-
-            {email === undefined && (
-                <button 
-                    className="header-login" 
-                    onClick={() => props.setModalIsOpen(true)}>
-                    로그인
-                </button>
-            )}
 
             <p className="header-error-write" onClick={errorInsertClick}>에러 등록하기</p>
         </header>

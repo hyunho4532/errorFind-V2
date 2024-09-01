@@ -56,11 +56,6 @@
             z-index: 10;
         }
 
-        .header-login {
-            margin-right: 72px;
-            cursor: pointer;
-        }
-
         .header-main-email {
             cursor: pointer;
             font-family: 'GangwonEduPowerExtraBoldA';
@@ -69,6 +64,18 @@
         .header-error-write {
             cursor: pointer;
             font-family: 'GangwonEduPowerExtraBoldA';
+        }
+    }
+
+    .header-div-login {
+        height: 40px;
+        margin-top: 8px;
+        margin-right: 16px;
+        margin-left: 40px;
+
+        .header-login {
+            margin-left: 16px;
+            cursor: pointer;
         }
     }
 }
