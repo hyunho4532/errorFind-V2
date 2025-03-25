@@ -8,6 +8,7 @@ import Helping from "../view/heping/Helping.tsx";
 import HelpingInsert from "../view/heping/insert/HelpingInsert.tsx";
 import HelpingChat from "../view/heping/chat/HelpingChat.tsx";
 import ErrorFindProfile from "../view/errorfind/profile/ErrorFindProfile.tsx";
+import { Question } from "../view/question/Question.tsx";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
     {
         path: "/error/profile",
         element: <ErrorFindProfile />
+    },
+    {
+        path: "/question",
+        element: <Question />
     }
 ])
 
