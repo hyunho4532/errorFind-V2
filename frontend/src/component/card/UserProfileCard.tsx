@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const UserProfileCard = () => {
     
-    const userAuth = localStorage.getItem('user');
+    const userAuth = localStorage.getItem('userData');
     const userAuthFromJson = JSON.parse(userAuth!);
 
     const [userAuthBoardCount, setUserAuthBoardCount] = useState(0);

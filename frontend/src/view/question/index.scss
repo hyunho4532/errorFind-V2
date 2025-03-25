@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar {
+    background-color: #f0f0f0;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+}
+
+.main-content {
+    background-color: cornflowerblue;
+    width: 1000px;
+    height: 91vh;
+    align-self: center;
+    margin-left: 240px;
+}
+
+.Main {
+    display: flex;
+    justify-content: center;
+    font-family: 'GangwonEduPowerExtraBoldA';
+    color: white;
+}
+
+.Main .JavaScript {
+    font-size: 22px;
+    text-align: center;
+}
+
+.Main .Button {
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+.CurrentQuestion {
+    text-align: left;
+    font-size: 22px;
+    padding-top: 48px;
+    padding-left: 16px;
+    color: white;
+    font-family: 'GangwonEduPowerExtraBoldA';
+}
+
+.Card {
+    width: 240px;
+    height: 160px;
+    margin-left: 16px;
+}

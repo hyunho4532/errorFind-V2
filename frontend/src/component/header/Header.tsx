@@ -10,7 +10,7 @@ function Header(props: HeaderProps) {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [userModalIsOpen, setUserModalIsOpen] = useState(false);
-    const [userProfileSelect, setUserProfileSelect] = useState(false);
+    const [userProfileSelect, ] = useState(false);
 
     useMemo(() => {
     
@@ -26,9 +26,6 @@ function Header(props: HeaderProps) {
     return (
         <>
             <HeaderInfo
-                userData={props.userData}
-                userProfileSelect={userProfileSelect}
-                setUserProfileSelect={setUserProfileSelect}
                 setModalIsOpen={setModalIsOpen} />
 
             { userProfileSelect ? 

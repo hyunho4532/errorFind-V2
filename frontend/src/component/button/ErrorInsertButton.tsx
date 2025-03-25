@@ -11,12 +11,10 @@ function ErrorInsertButton() {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const errorBoardData = useRecoilValue<ErrorBoard>(errorBoard);
+    
+    const tokenString = localStorage.getItem('sb-cvbkuzrehmguxtilpgkl-auth-token');
 
-    const authUid: any = localStorage.getItem('authuid');
-    const user: any = localStorage.getItem('user');
-
-    const auth = JSON.parse(authUid);
-    const authFromJson = JSON.parse(user);
+    const token = JSON.parse(tokenString!);
 
     const randomUid = uuid();
 
@@ -25,13 +23,13 @@ function ErrorInsertButton() {
 
     const data = {
         id: randomUid,
-        authuid: auth.authuid,
-        author: authFromJson.userData.nickname,
+        authuid: token.user.id,
+        author: token.user.user_metadata.name,
         selectedPlatform: errorBoardData.selectedPlatform,
         errorType: errorBoardData.errorType,
         errorFile: errorBoardData.errorFile,
         errorSituation: errorBoardData.errorSituation,
-        profile: authFromJson.userData.profile,
+        profile: token.user.user_metadata.avatar_url,
         errorStatus: "진행 중",
         formattedDate: formattedDateData,
     };
@@ -77,5 +75,4 @@ function ErrorInsertButton() {
     )
 }
 
-
-export default ErrorInsertButton
+export default ErrorInsertButton;
